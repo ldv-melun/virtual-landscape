@@ -17,12 +17,18 @@ Conformément aux exemples fournis
  
 ![analyse](docs/analyse.png)
 
-### Historique
+### Pour info, un historique en java
 
  ![old-example](docs/java-paysage-virutel.png)
 
 [Exemple d'un projet d'étudiant - code et executable en java](docs/genPaysageEtudiant.zip) 
 
+Une fois décompressé :
 
+`=> lancement   : java -jar paysage.jar`
+
+`=> son rapport : ./genPaysage/rapport/`
+
+`=> le code source : ./genPaysage/*`
 
 
