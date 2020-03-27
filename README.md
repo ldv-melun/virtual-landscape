@@ -104,19 +104,9 @@ La barre de menu contient une liste déroulante présentant les composants de fo
 Un clic utilisateur sur un des items de cette liste provoquera 
 un appel à la fonction `drawForm`.
 
-Au bas de la page, avant le fin de `body` (voir ci-dessous) on comprend que la fonction `drawForm` 
-appelle la fonction `drawThisForm` du module `main.js`:
-
 ```javascript
-
 <script type="module" src="js/main.js"></script>
-<script type="module">
-  import {drawThisForm, drawAllForms} from './js/main.js';
-  // accroche des fonctions du module au document courant (pour être appelées ensuite)
-  document.drawForm = drawThisForm
-  document.drawAllForms = drawAllForms
-  document.addEventListener('DOMContentLoaded', document.drawAllForms)
-</script>
+
 <script>
   function drawForm(form) {
     document.drawForm(form)
@@ -124,6 +114,8 @@ appelle la fonction `drawThisForm` du module `main.js`:
 </script>
 
 ``` 
+En allant voir  `main.js` on comprend que la fonction `drawForm` 
+est une référence la fonction  `drawThisForm` du module `main.js` (importé juste avant)
   
 
 ### ajouter/supprimer une nouvelle classe de forme

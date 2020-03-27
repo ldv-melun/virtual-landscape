@@ -66,4 +66,8 @@ function drawAllForms() {
   _drawForms(buildForms())
 }
 
-export {drawAllForms, drawThisForm}
+// accroche des fonctions du module au document courant (pour être appelées ensuite)
+document.drawForm = drawThisForm
+document.drawAllForms = drawAllForms
+document.addEventListener('DOMContentLoaded', document.drawAllForms)
+
