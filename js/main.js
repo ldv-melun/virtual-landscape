@@ -1,6 +1,6 @@
 import {Immeuble} from './modules/Immeuble.js';
 import {Triangle} from './modules/Triangle.js';
-import {AbstractForm} from './modules/AbstractForm';
+import {AbstractForm} from './modules/AbstractForm.js';
 
 var cwPrev = null
 var chPrev = null
@@ -21,6 +21,11 @@ function clearCanvas() {
   chPrev = ch
 }
 
+/**
+ * Dessine tous les objets dans le canvas
+ * @param forms tableau d'objets de type AbstractForm
+ * @private
+ */
 function _drawForms(forms) {
   const c = document.getElementById('sceneryCanvas')
   const ctx = c.getContext("2d");

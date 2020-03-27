@@ -1,4 +1,4 @@
-import { AbstractForm } from './AbstractForm';
+import { AbstractForm } from './AbstractForm.js';
 class Triangle extends AbstractForm {
   // add default values to avoid errors on empty arguments
   constructor (

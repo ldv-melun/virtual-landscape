@@ -1,27 +1,28 @@
-import { AbstractForm } from './AbstractForm';
-class Immeuble  extends  AbstractForm {
+import {AbstractForm} from './AbstractForm.js';
+
+class Immeuble extends AbstractForm {
 
   // you create new Rectangles by calling this as a function
   // these are the arguments you pass in
   // add default values to avoid errors on empty arguments
-  constructor (
-      x = 0,
-           y = 0,
-           width = 0,
-           height = 0,
-           fillColor = '',
-           strokeColor = '',
-           strokeWidth = 2,
-           pesanteur= false
+  constructor(
+    x = 0,
+    y = 0,
+    width = 0,
+    height = 0,
+    fillColor = '',
+    strokeColor = '',
+    strokeWidth = 2,
+    pesanteur = false
   ) {
-      super(x,y,width, height, fillColor, strokeColor, strokeWidth, pesanteur)
+    super(x, y, width, height, fillColor, strokeColor, strokeWidth, pesanteur)
   }
 
   /**
    * Dessine la forme spécifique à cette classe
    * @param ctx contexte 2D du canvas
    */
-  draw (ctx) {
+  draw(ctx) {
     // console.log(this.toString())
     // destructuring
     // const {
@@ -43,7 +44,7 @@ class Immeuble  extends  AbstractForm {
 
 
     const MAX_HEAD = 80
-    let new_y = (this.pesanteur) ? window.innerHeight - this.height - MAX_HEAD: this.y
+    let new_y = (this.pesanteur) ? window.innerHeight - this.height - MAX_HEAD : this.y
     let wCase = ~~(this.width / 6)
     let hCase = ~~(this.height / 6)
 
@@ -78,13 +79,13 @@ class Immeuble  extends  AbstractForm {
     let widthCase = 100;
     let max = ~~Math.random() * 10 + 5
     let forms = []
-    for (let i=0; i<max; i++ ) {
+    for (let i = 0; i < max; i++) {
       forms.push(new Immeuble(
         ~~(Math.random() * window.innerWidth),
         ~~(Math.random() * 400),
         ~~(Math.random() * (widthCase)),
-        ~~(Math.random() * (widthCase*2)),
-        (i%2 === 0) ? 'gold' : 'gray',
+        ~~(Math.random() * (widthCase * 2)),
+        (i % 2 === 0) ? 'gold' : 'gray',
         'black',
         1,
         true
@@ -94,4 +95,4 @@ class Immeuble  extends  AbstractForm {
   }
 }
 
-export { Immeuble }
+export {Immeuble}
