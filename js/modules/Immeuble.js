@@ -17,7 +17,10 @@ class Immeuble  extends  AbstractForm {
       super(x,y,width, height, fillColor, strokeColor, strokeWidth, pesanteur)
   }
 
-  // draw rectangle to screen
+  /**
+   * Dessine la forme spécifique à cette classe
+   * @param ctx contexte 2D du canvas
+   */
   draw (ctx) {
     // console.log(this.toString())
     // destructuring

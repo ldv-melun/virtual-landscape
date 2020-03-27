@@ -14,7 +14,11 @@ class Triangle extends AbstractForm {
     super(x,y,width, height, fillColor, strokeColor, strokeWidth, pesenteur)
   }
 
-  // draw rectangle to screen
+
+  /**
+   * Dessine la forme spécifique à cette classe
+   * @param ctx contexte 2D du canvas
+   */
   draw (ctx) {
     ctx.save()
 
