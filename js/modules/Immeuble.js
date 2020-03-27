@@ -77,7 +77,7 @@ class Immeuble extends AbstractForm {
    */
   static buildForms() {
     let widthCase = 100;
-    let max = ~~Math.random() * 10 + 5
+    let max = ~~(Math.random() * 5) + 3
     let forms = []
     for (let i = 0; i < max; i++) {
       forms.push(new Immeuble(

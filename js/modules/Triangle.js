@@ -64,7 +64,7 @@ class Triangle extends AbstractForm {
   static buildForms() {
     // create a new rectangle object using the Immeuble class
     const myTriangle = new Triangle(250, 70, 100, 100, 'gold', '', 2, true )
-    let max = ~~Math.random() * 10 + 5
+    let max = ~~(Math.random() * 5) + 5
     let forms = []
     for (let i=0; i<max; i++ ) {
       forms.push(
