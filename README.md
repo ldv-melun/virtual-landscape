@@ -177,6 +177,11 @@ function drawThisForm(whichForm) {
 redéfinir les méthodes `static buildForms()` et ` draw(ctx)`. Prendre exemple sur `Immeuble` et `Triangle`
 
 
+ ![exemple en version de base](docs/exemple-app-init.png)
+
+INFO: le CSS n'est pas top : présence d'un scrolling de page (fait disparaitre le menu) 
+et petite marge à droite non désirée... Un nettoyage du layout doit être mener ! (sans ajout de bibliothèques tierces)
+
 <hr>
 
 ##### Pour info, un historique en java
