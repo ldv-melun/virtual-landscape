@@ -1,5 +1,5 @@
 import { AbstractForm } from './AbstractForm.js';
-class Triangle extends AbstractForm {
+class Planete extends AbstractForm {
   // add default values to avoid errors on empty arguments
   constructor (
     x = 0,
@@ -34,21 +34,36 @@ class Triangle extends AbstractForm {
     const MAX_HEAD = 0
     let new_y = (this.pesanteur) ? window.innerHeight - this.height - MAX_HEAD: this.y
 
-    // un peu d'ombre pour les triangles
-    ctx.shadowOffsetX = 2;
-    ctx.shadowOffsetY = 2;
-    ctx.shadowBlur = 2;
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+    let rayon = this.width/2;
+    let sommets = [];
+    let nbSommets = 18
+    let angle=0;
+    let x1
+    let y1;
+    let ox
+    let oy // origine
+    ox= this.x + rayon;
+    oy= this.y + rayon;
 
-    // triangle avec une base
-    ctx.moveTo(this.x + this.width/2, new_y)
-    ctx.lineTo(this.right, new_y + this.height)
-    ctx.lineTo(this.x, new_y + this.height)
-
+    for (let i=0; i<nbSommets; i++) {
+      x1=ox+Math.cos(angle)*rayon;
+      y1=oy+Math.sin(angle)*rayon;
+      sommets.push( {'x' : ~~Math.round(x1), 'y': ~~Math.round(y1) } );
+      angle+=((2*Math.PI)/nbSommets);
+    }
+    // maintenant on dessine
+    for (let i=0; i<sommets.length; i++){
+      let p1 = sommets[i];
+      for (let j=i+1; j<sommets.length; j++)
+      {
+        let p2 = sommets[j];
+        ctx.moveTo(p1.x,p1.y)
+        ctx.lineTo(p2.x,p2.y);
+      }
+    }
+    // ctx.rect(this.x, this.y, this.width, this.height)
     ctx.closePath()
 
-    // draw the path to screen
-    ctx.fill()
     ctx.stroke()
 
     // restores the styles from earlier
@@ -59,30 +74,14 @@ class Triangle extends AbstractForm {
 
   /**
    * get array of forms
-   * @return {[Triangle,...]}
+   * @return {[Planete...]}
    */
   static buildForms() {
-    // create a new rectangle object using the Immeuble class
-    const myTriangle = new Triangle(250, 70, 100, 100, 'gold', '', 2, true )
-    let max = ~~(Math.random() * 5) + 5
-    let forms = []
-    for (let i=0; i<max; i++ ) {
-      forms.push(
-        new Triangle(
-          ~~(Math.random()*3*myTriangle.x + 50) ,
-          ~~(Math.random()*myTriangle.y),
-          ~~(Math.random()*3*myTriangle.width),
-          ~~(Math.random()*myTriangle.height),
-          myTriangle.fillColor,
-          myTriangle.strokeColor,
-          '',
-          i%2===0))
-    }
-    const builds = forms
-
-    return builds
+    const myPlanete = new Planete(-250, 10, 600, 600, 'gold', '', 1, false )
+    const forms = [myPlanete]
+    return forms
   }
 
 }
 
-export { Triangle }
+export { Planete }

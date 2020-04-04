@@ -43,7 +43,7 @@ class Immeuble extends AbstractForm {
     ctx.strokeStyle = this.strokeColor
 
 
-    const MAX_HEAD = 80
+    const MAX_HEAD = 0
     let new_y = (this.pesanteur) ? window.innerHeight - this.height - MAX_HEAD : this.y
     let wCase = ~~(this.width / 6)
     let hCase = ~~(this.height / 6)

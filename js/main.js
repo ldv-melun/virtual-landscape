@@ -1,5 +1,6 @@
 import {Immeuble} from './modules/Immeuble.js';
 import {Triangle} from './modules/Triangle.js';
+import {Planete} from './modules/Planete.js';
 import {AbstractForm} from './modules/AbstractForm.js';
 
 var cwPrev = null
@@ -12,8 +13,8 @@ function clearCanvas() {
   if (cwPrev) {
     ctx.clearRect(0, 0, cwPrev, chPrev)
   }
-  const cw = c.width = window.innerWidth;
-  const ch = c.height = window.innerHeight - 80;
+  const cw = c.width = window.innerWidth
+  const ch = c.height = window.innerHeight // - 80;
 
   console.log("window.innerHeight : " + window.innerHeight);
 
@@ -45,9 +46,11 @@ function _drawForms(forms) {
  * @return {Object[]}
  */
 function buildForms() {
-  let forms = Immeuble.buildForms()
+  let forms = Planete.buildForms()
+  forms = forms.concat(Immeuble.buildForms())
   forms = forms.concat(Triangle.buildForms())
   forms = forms.concat(AbstractForm.buildForms())
+
   // à compléter/modifier
   // etc. pour chacune de vos classes
   return forms
@@ -64,7 +67,9 @@ function drawThisForm(whichForm) {
     _drawForms(Triangle.buildForms())
   } else if (whichForm === 'AbstractForm') {
     _drawForms(AbstractForm.buildForms())
-  }
+  } else if (whichForm === 'Planete') {
+  _drawForms(Planete.buildForms())
+}
 }
 
 function drawAllForms() {
