@@ -36,7 +36,7 @@ class Planete extends AbstractForm {
 
     let rayon = this.width/2;
     let sommets = [];
-    let nbSommets = 18
+    let nbSommets = 31;
     let angle=0;
     let x1
     let y1;
@@ -77,7 +77,9 @@ class Planete extends AbstractForm {
    * @return {[Planete...]}
    */
   static buildForms() {
-    const myPlanete = new Planete(-250, 10, 600, 600, 'gold', '', 1, false )
+    const cx =  window.innerWidth/0.9 - 600/2
+
+    const myPlanete = new Planete(cx, 10, 600, 600, 'gold', '', 1, false )
     const forms = [myPlanete]
     return forms
   }
