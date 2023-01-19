@@ -31,7 +31,7 @@ class Triangle extends AbstractForm {
     ctx.strokeStyle = this.strokeColor
 
     // pousse l'objet au bas de l'écran
-    const MAX_HEAD = 0
+    const MAX_HEAD = 80
     let new_y = (this.pesanteur) ? window.innerHeight - this.height - MAX_HEAD: this.y
 
     // un peu d'ombre pour les triangles

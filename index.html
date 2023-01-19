@@ -4,29 +4,29 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Virtual Landscape Project</title>
-  <link href="css/layout.css" rel="stylesheet" type="text/css"/>
+    <link href="css/layout.css" rel="stylesheet" type="text/css"/>
   <link href="css/menu.css" rel="stylesheet" type="text/css"/>
-  <!-- Template from : http://www.script-tutorials.com/pure-css3-lavalamp-menu/ -->
 </head>
 <body>
 <header>
   <ul id="nav">
-    <li><a href="#"> Virtual<br/>&nbsp;Land</a></li>
+    <li><a href="#"> Virtual<br/>&nbsp;Landscape</a></li>
     <li><a href="#" onclick="document.drawAllForms();">&nbsp;&nbsp;All&nbsp;&nbsp;</a></li>
-    <li><a class="hsubs" href="#">Composant</a>
-      <ul class="subs">
-        <li><a href="#" onclick="drawForm('Immeuble');return false;">Immeuble</a></li>
-        <li><a href="#" onclick="drawForm('Triangle');return false;">Triangle</a></li>
-        <li><a href="#" onclick="drawForm('AbstractForm');return false;">AbstractForm</a></li>
-        <li><a href="#" onclick="drawForm('Planete');return false;">Planete</a></li>
-      </ul>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Composants</a>
+      <div class="dropdown-content">
+        <a href="#" onclick="drawForm('Immeuble');return false;">Immeuble</a>
+        <a href="#" onclick="drawForm('Triangle');return false;">Triangle</a>
+        <a href="#" onclick="drawForm('AbstractForm');return false;">AbstractForm</a>
+        <a href="#" onclick="drawForm('Planete');return false;">Planete</a>
+      </div>
     </li>
-    <li style="margin-right:20px; margin-left:auto"><a href="#">About</a></li>
-    <div id="lavalamp"></div>
+
+    <li><a href="#">About</a></li>
   </ul>
 </header>
 
-<div class="container" >
+<div class="container">
   <canvas id="sceneryCanvas" style="width: 100%"></canvas>
 </div>
 

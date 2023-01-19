@@ -38,7 +38,7 @@ Objectifs
 
 * `index.html` : le point d'entrée de l'interprétation par un navigateur. Hormis les inclusion `css`, 
 ce fichier contient quelques instructions `javascript` faisant appel à des fonction de `main.js`
-* `css` : l'application utilise le template : http://www.script-tutorials.com/pure-css3-lavalamp-menu/
+* `css` : **TODO à modifier...**  l'application utilise le template : http://www.script-tutorials.com/pure-css3-lavalamp-menu/
 * `main.js` : déclare utiliser des modules (des classes `js`) et définit 2 fonctions : ̀
 
 ```javascript 
@@ -60,7 +60,7 @@ function drawAllForms () {
 le dossier `modules` : il contient le code source de classes javascript. C'est dans ce dossier 
 que vous placerez vos classes représentant les formes issues de votre imagination. 
 
-* `AbstractForm.js` : c'est la classe de base des formes à venir (deux sont fournies en exemple)
+* `AbstractForm.js` : c'est la classe de base des formes à venir (des exemples sont fournies)
 * `Immeuble.js` et `Triangle.js` sont des exemples.
 
 Les nouvelles formes seront représentées par des classes

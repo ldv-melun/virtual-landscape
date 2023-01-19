@@ -42,22 +42,26 @@ class Immeuble extends AbstractForm {
     ctx.beginPath()
     ctx.strokeStyle = this.strokeColor
 
+    const MAX_HEAD = 80
+    const MAX_FENETRE_ETAGE = Math.floor(Math.random()*6) + 5
+    const MAX_ETAGE = Math.floor(Math.random()*18) + 4
 
-    const MAX_HEAD = 0
+    // la hauteur de l'immeuble tient compte de l'arrondi du calcul de la hauteur d'un étage
+    this.height = Math.floor(this.height / MAX_ETAGE) * MAX_ETAGE
+
     let new_y = (this.pesanteur) ? window.innerHeight - this.height - MAX_HEAD : this.y
-    let wCase = ~~(this.width / 6)
-    let hCase = ~~(this.height / 6)
+    let wCase = Math.floor(this.width / MAX_FENETRE_ETAGE)
+    let hCase = Math.floor(this.height / MAX_ETAGE)
 
     console.log("this.x = " + this.x + "  new_y = " + new_y)
-    const MAX_FENETRE_ETAGE = 10
-    const MAX_ETAGE = 15
+
     // https://developer.mozilla.org/fr/docs/Tutoriel_canvas/Ajout_de_styles_et_de_couleurs
     for (let i = 0; i < MAX_FENETRE_ETAGE; i++) {
       for (let j = 0; j < MAX_ETAGE; j++) {
         /*ctx.fillStyle = 'rgb(' + Math.floor(255 - 42.5 * i) + ',' +
           Math.floor(255 - 42.5 * j) + ',0)';*/
-        ctx.rect(this.x + j * wCase, new_y + i * hCase, wCase, hCase);
-        ctx.fillRect(this.x + j * wCase, new_y + i * hCase, wCase, hCase);
+        ctx.rect(this.x + i * wCase, new_y + j * hCase, wCase, hCase);
+        ctx.fillRect(this.x + i * wCase, new_y + j * hCase, wCase, hCase);
       }
     }
     // ctx.rect(this.x, new_y, this.width, this.height)
@@ -81,10 +85,10 @@ class Immeuble extends AbstractForm {
     let forms = []
     for (let i = 0; i < max; i++) {
       forms.push(new Immeuble(
-        ~~(Math.random() * window.innerWidth),
-        ~~(Math.random() * 400),
-        ~~(Math.random() * (widthCase)),
-        ~~(Math.random() * (widthCase * 2)),
+        Math.floor(Math.random() * window.innerWidth),
+        Math.floor(Math.random() * 400) + 10,
+        Math.floor(Math.random() * (widthCase) + 20),
+        Math.floor(Math.random() * (widthCase * 2) + 30),
         (i % 2 === 0) ? 'gold' : 'gray',
         'black',
         1,

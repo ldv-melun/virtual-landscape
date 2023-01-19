@@ -77,9 +77,11 @@ class Planete extends AbstractForm {
    * @return {[Planete...]}
    */
   static buildForms() {
-    const cx =  window.innerWidth/0.9 - 600/2
+    const cx =  window.innerWidth/ (~~(Math.random() * 4) + 2)
+    const w =  window.innerWidth/ (~~(Math.random() * 4) + 2)
 
-    const myPlanete = new Planete(cx, 10, 600, 600, 'gold', '', 1, false )
+
+    const myPlanete = new Planete(cx, 10, w, w, 'gold', '', 1, false )
     const forms = [myPlanete]
     return forms
   }

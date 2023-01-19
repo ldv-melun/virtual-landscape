@@ -14,7 +14,7 @@ function clearCanvas() {
     ctx.clearRect(0, 0, cwPrev, chPrev)
   }
   const cw = c.width = window.innerWidth
-  const ch = c.height = window.innerHeight // - 80;
+  const ch = c.height = window.innerHeight - 80;
 
   console.log("window.innerHeight : " + window.innerHeight);
 
@@ -80,4 +80,5 @@ function drawAllForms() {
 document.drawForm = drawThisForm
 document.drawAllForms = drawAllForms
 document.addEventListener('DOMContentLoaded', document.drawAllForms)
+visualViewport.addEventListener('resize', document.drawAllForms)
 
