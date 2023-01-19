@@ -1,5 +1,8 @@
 import {AbstractForm} from './AbstractForm.js';
 
+/**
+ * Dessine un immeuble
+ */
 class Immeuble extends AbstractForm {
 
   // you create new Rectangles by calling this as a function
@@ -53,7 +56,7 @@ class Immeuble extends AbstractForm {
     let wCase = Math.floor(this.width / MAX_FENETRE_ETAGE)
     let hCase = Math.floor(this.height / MAX_ETAGE)
 
-    console.log("this.x = " + this.x + "  new_y = " + new_y)
+    // console.log("this.x = " + this.x + "  new_y = " + new_y)
 
     // https://developer.mozilla.org/fr/docs/Tutoriel_canvas/Ajout_de_styles_et_de_couleurs
     for (let i = 0; i < MAX_FENETRE_ETAGE; i++) {
@@ -81,7 +84,7 @@ class Immeuble extends AbstractForm {
    */
   static buildForms() {
     let widthCase = 100;
-    let max = ~~(Math.random() * 5) + 3
+    let max = Math.floor(Math.random() * 5) + 3
     let forms = []
     for (let i = 0; i < max; i++) {
       forms.push(new Immeuble(

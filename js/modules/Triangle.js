@@ -1,4 +1,8 @@
 import { AbstractForm } from './AbstractForm.js';
+
+/**
+ * Déssine un triangle
+ */
 class Triangle extends AbstractForm {
   // add default values to avoid errors on empty arguments
   constructor (
@@ -64,7 +68,7 @@ class Triangle extends AbstractForm {
   static buildForms() {
     // create a new rectangle object using the Immeuble class
     const myTriangle = new Triangle(250, 70, 100, 100, 'gold', '', 2, true )
-    let max = ~~(Math.random() * 5) + 5
+    let max = ~~(Math.random() * 5) + 5 // max in [5..10]
     let forms = []
     for (let i=0; i<max; i++ ) {
       forms.push(
@@ -76,11 +80,12 @@ class Triangle extends AbstractForm {
           myTriangle.fillColor,
           myTriangle.strokeColor,
           '',
-          i%2===0))
+          i%2===0 // pesenteur une fois sur 2
+        )
+      )
     }
-    const builds = forms
-
-    return builds
+    // retourne un tableau d'objets de type Triangle
+    return forms
   }
 
 }

@@ -16,7 +16,7 @@ function clearCanvas() {
   const cw = c.width = window.innerWidth
   const ch = c.height = window.innerHeight - 80;
 
-  console.log("window.innerHeight : " + window.innerHeight);
+  // console.log("window.innerHeight : " + window.innerHeight);
 
   cwPrev = cw
   chPrev = ch

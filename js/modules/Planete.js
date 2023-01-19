@@ -1,4 +1,8 @@
 import { AbstractForm } from './AbstractForm.js';
+
+/**
+ * Dessine une sorte de planete...
+ */
 class Planete extends AbstractForm {
   // add default values to avoid errors on empty arguments
   constructor (
@@ -14,9 +18,8 @@ class Planete extends AbstractForm {
     super(x,y,width, height, fillColor, strokeColor, strokeWidth, pesenteur)
   }
 
-
   /**
-   * Dessine la forme spécifique à cette classe
+   * Dessine la forme spécifique à cette classe (ici une "planete")
    * @param ctx contexte 2D du canvas
    */
   draw (ctx) {
@@ -79,7 +82,6 @@ class Planete extends AbstractForm {
   static buildForms() {
     const cx =  window.innerWidth/ (~~(Math.random() * 4) + 2)
     const w =  window.innerWidth/ (~~(Math.random() * 4) + 2)
-
 
     const myPlanete = new Planete(cx, 10, w, w, 'gold', '', 1, false )
     const forms = [myPlanete]
