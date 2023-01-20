@@ -1,7 +1,10 @@
-import {Immeuble} from './modules/Immeuble.js';
-import {Triangle} from './modules/Triangle.js';
-import {Planete} from './modules/Planete.js';
-import {AbstractForm} from './modules/AbstractForm.js';
+
+import { Immeuble } from './modules/Immeuble.js';
+import { Triangle } from './modules/Triangle.js';
+import { Planete } from './modules/Planete.js';
+import { AbstractForm } from './modules/AbstractForm.js';
+
+import * as modulesForms from "./modules/index.js"; // pour drawThisForm
 
 var cwPrev = null
 var chPrev = null
@@ -45,22 +48,40 @@ function _drawForms(forms) {
  *
  * @return {Object[]}
  */
-function buildForms() {
-  let forms = Planete.buildForms()
-  forms = forms.concat(Immeuble.buildForms())
-  forms = forms.concat(Triangle.buildForms())
-  forms = forms.concat(AbstractForm.buildForms())
+function buildAllForms() {
+  const mod = modulesForms;
+  let allForms = []
+
+  // Bonne idée, mais on ne maitris pas l'ordre d'exécution des classes
+  // console.log(Object.keys(mod))
+  // let keys = Object.keys(mod)
+  // for (let i=0; i<keys.length; i++)
+  //   allForms = allForms.concat(mod[keys[i]].buildForms())
+
+  allForms = Planete.buildForms()
+  allForms = allForms.concat(Immeuble.buildForms())
+  allForms = allForms.concat(Triangle.buildForms())
+  allForms = allForms.concat(AbstractForm.buildForms())
+
+
+  return allForms 
 
   // à compléter/modifier
   // etc. pour chacune de vos classes
-  return forms
+  
 }
 
 /**
  *  dessine uniquement la forme passée dont le nom est reçu en paramètre
- * @param whichForm (si on peut le faire en dynamaique, je suis preneur, style passer la classe au lieu de son nom)
+ * @param whichForm 
  */
 function drawThisForm(whichForm) {
+  const mod = modulesForms;
+  if (typeof mod[whichForm] !== undefined) {
+    _drawForms(mod[whichForm].buildForms())
+  }
+
+  /*
   if (whichForm === 'Immeuble') {
     _drawForms(Immeuble.buildForms())
   } else if (whichForm === 'Triangle') {
@@ -68,17 +89,20 @@ function drawThisForm(whichForm) {
   } else if (whichForm === 'AbstractForm') {
     _drawForms(AbstractForm.buildForms())
   } else if (whichForm === 'Planete') {
-  _drawForms(Planete.buildForms())
-}
+    _drawForms(Planete.buildForms())
+  }
+  */
 }
 
 function drawAllForms() {
-  _drawForms(buildForms())
+  _drawForms(buildAllForms())
 }
 
 // accroche des fonctions du module au document courant (pour être appelées ensuite)
 document.drawForm = drawThisForm
 document.drawAllForms = drawAllForms
+
+// exécutions de fonctions sur événement 
 document.addEventListener('DOMContentLoaded', document.drawAllForms)
 visualViewport.addEventListener('resize', document.drawAllForms)
 
