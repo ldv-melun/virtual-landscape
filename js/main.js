@@ -72,26 +72,14 @@ function buildAllForms() {
 }
 
 /**
- *  dessine uniquement la forme passée dont le nom est reçu en paramètre
- * @param whichForm 
+ *  dessine uniquement la forme passée dont le nom est reçu en paramètre  (attention, le fichier modules/index.js doit être mis à jour pour chaque classe ajoutée)
+ * @param whichForm le nom d'une classe héritant d'AbstractForm dans modules
  */
 function drawThisForm(whichForm) {
   const mod = modulesForms;
   if (typeof mod[whichForm] !== undefined) {
     _drawForms(mod[whichForm].buildForms())
   }
-
-  /*
-  if (whichForm === 'Immeuble') {
-    _drawForms(Immeuble.buildForms())
-  } else if (whichForm === 'Triangle') {
-    _drawForms(Triangle.buildForms())
-  } else if (whichForm === 'AbstractForm') {
-    _drawForms(AbstractForm.buildForms())
-  } else if (whichForm === 'Planete') {
-    _drawForms(Planete.buildForms())
-  }
-  */
 }
 
 function drawAllForms() {

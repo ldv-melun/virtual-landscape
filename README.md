@@ -30,6 +30,7 @@ Objectifs
 ├── js
 │   ├── main.js
 │   └── modules
+│       ├── index.js
 │       ├── AbstractForm.js
 │       ├── Immeuble.js
 │       └── Triangle.js
@@ -38,17 +39,19 @@ Objectifs
 
 * `index.html` : le point d'entrée de l'interprétation par un navigateur. Hormis les inclusion `css`, 
 ce fichier contient quelques instructions `javascript` faisant appel à des fonction de `main.js`
-* `css` : **TODO à modifier...**  l'application utilise le template : http://www.script-tutorials.com/pure-css3-lavalamp-menu/
-* `main.js` : déclare utiliser des modules (des classes `js`) et définit 2 fonctions : ̀
+* `css`     : Thème simple, avec une barre de menu
+* `main.js` : Déclare utiliser des modules (des classes `js`) et définit 2 fonctions : ̀
+
 
 ```javascript 
+/**
+ *  dessine uniquement la forme passée dont le nom est reçu en paramètre
+ * @param whichForm 
+ */
 function drawThisForm(whichForm) {
-  if (whichForm === 'Immeuble') {
-    _drawForms(Immeuble.buildForms())
-  } else if (whichForm === 'Triangle') {
-    _drawForms(Triangle.buildForms())
-  } else if (whichForm === 'AbstractForm') {
-  _drawForms(AbstractForm.buildForms())
+  const mod = modulesForms;
+  if (typeof mod[whichForm] !== undefined) {
+    _drawForms(mod[whichForm].buildForms())
   }
 }
 
@@ -60,12 +63,11 @@ function drawAllForms () {
 le dossier `modules` : il contient le code source de classes javascript. C'est dans ce dossier 
 que vous placerez vos classes représentant les formes issues de votre imagination. 
 
+* `index.js`: qui déclare les classes des formes (à mettre à jour lorsque vous définissez une nouvelle classe)
 * `AbstractForm.js` : c'est la classe de base des formes à venir (des exemples sont fournies)
-* `Immeuble.js` et `Triangle.js` sont des exemples.
+* `Immeuble.js`, `Planet.js`  et `Triangle.js` sont des exemples.
 
-Les nouvelles formes seront représentées par des classes
-
-Conformément aux exemples fournis 
+Les nouvelles formes seront représentées par des classes héritant de `AbstractForm.js` et placées dans le dossier `modules`, conformément aux exemples fournis 
  
  
 ![analyse](docs/analyse.png)
@@ -73,17 +75,19 @@ Conformément aux exemples fournis
 
 #### Délivrée par un serveur HTTP
 
-Attention, l'application doit être placée derrière en serveur HTTP, et 
-donc accessible à un utilisateur en réponse à une 
+Attention, l'application doit être placée derrière en serveur HTTP, et donc accessible à un utilisateur en réponse à une 
 requête de type `http://` (et non en protocole `file://`)  
 
+Sous VS, vous pouvez installer l'extension `Live Server`. Une fois installée, vous pouvez faire clic droit sur `index.html` pour lancer une instance d'un serveur HTTP, sur un port particulier, de votre machine locale. Ainsi votre application est-elle prête à être testée. 
 
 ### Comment démarrer ?
 
 1. Étudier le tutoriel https://developer.mozilla.org/fr/docs/Tutoriel_canvas/Utilisation_de_base - pour un internet ouvert - Fondation Mozilla open source (https://www.mozilla.org/fr/about/manifesto/)  
 2. Étudier le code de `index.html`, `main.js` et autres de l'application.
-3. Créer une nouvelle classe dans `modules` en vous basant sur une idée originale et des exemples glanés sur le net 
-4. Mettre au point ... 
+3. Concevoir, sur le papier, une idée de dessin originale (faire simple pour commencer) - inspirez vous d'exemples glanés sur le net.
+4. Créer une nouvelle classe dans `modules` qui traduira votre idée originale en code 
+5. Ajouter cette classe à `modules/index.js` et ajouter un nouveau lien dans le dropdown `Composants` de `index.html` (voir ci-après)
+5. Mettre au point ... 
 
 ### Analyse du code existant
 
@@ -117,27 +121,19 @@ un appel à la fonction `drawForm`.
 En allant voir  `main.js` on comprend que la fonction `drawForm` 
 est une référence la fonction  `drawThisForm` du module `main.js` (importé juste avant)
   
+<hr>
 
-### ajouter/supprimer une nouvelle classe de forme
+## ajouter/supprimer une nouvelle classe de forme
+<br>
 
 Voici où vous devriez alors intervenir  :
 
 * dans `index.html`, ajouter un ou supprimer un item à la liste `<li>` qui 
 définit la fonction `js` à appeler lorsque l'utilisateur clique sur le lien l'instruction 
-`return false;` qui suit est pour là pour stopper l'action normal du navigateur 
-lorsque l'utilisateur clique sur un lien - comme suivre le lien ou scroller la page).     
+`return false;` qui suit est pour là pour stopper l'action normal du navigateur lorsque l'utilisateur clique sur un lien - comme suivre le lien ou scroller la page).     
+`
 
-```html
-  <li><a class="hsubs" href="#">Composant</a>
-      <ul class="subs">
-        <li><a href="#" onclick="drawForm('Immeuble');return false;">Immeuble</a></li>
-        <li><a href="#" onclick="drawForm('Triangle');return false;">Triangle</a></li>
-        <li><a href="#" onclick="drawForm('AbstractForm');return false;">AbstractForm</a></li>
-      </ul>
-  </li>
-```
-
-* dans `main.js`, modifier les fonctions `drawThisForm` et `drawThisForm`  
+* dans `main.js`, modifier les fonctions `buildForms` et ajouter votre classe dans l'export de  `modules/index.js`  
 
 ```javascript
 
@@ -156,34 +152,39 @@ function buildForms() {
   return forms
 }
 
+
 /**
- *  dessine uniquement la forme passée dont le nom est reçu en paramètre
- * @param whichForm (si on peut le faire en dynamaique, je suis preneur,
- *                    style passer la classe au lieu de son nom)
+ *  Dessine uniquement la forme passée dont le nom est reçu en paramètre  (attention, le fichier modules/index.js doit être mis à jour pour chaque classe ajoutée)
+ * @param whichForm le nom d'une classe héritant d'AbstractForm dans modules
  */
 function drawThisForm(whichForm) {
-  if (whichForm === 'Immeuble') {
-    _drawForms(Immeuble.buildForms())
-  } else if (whichForm === 'Triangle') {
-    _drawForms(Triangle.buildForms())
-  } else if (whichForm === 'AbstractForm') {
-    _drawForms(AbstractForm.buildForms())
+  const mod = modulesForms;
+  if (typeof mod[whichForm] !== undefined) {
+    _drawForms(mod[whichForm].buildForms())
   }
-}
+
 
 ```
 
-* Lors d'un ajout d'une nouvelle classe  (par exemple `MaNouvelleFome.js`), 
-redéfinir les méthodes `static buildForms()` et ` draw(ctx)`. Prendre exemple sur `Immeuble` et `Triangle`
+* Lors d'un ajout d'une nouvelle classe  (par exemple `MaNouvelleFome.js`), redéfinir les méthodes `static buildForms()` et ` draw(ctx)`. Prendre exemple sur `Immeuble` et `Triangle`
 
  ![exemple en version de base](docs/exemple-app-init.png)
 
-INFO: le CSS n'est pas top : présence d'un scrolling de page (fait disparaitre le menu) 
-et petite marge à droite non désirée... Un nettoyage du layout doit être mené ! (sans ajout de bibliothèques tierces)
 
 <hr>
 
-##### Pour info, un historique en java
+### Pour info, des exemples (étudiants 2020)
+
+ ![old-example](docs/exemple-1-2020.png)
+
+![old-example](docs/exemple-2-2020.png)
+
+ ![old-example](docs/exemple-3-2020.png)
+ 
+
+<hr>
+
+### Un historique en java (étudiant) 
 
  ![old-example](docs/java-paysage-virutel.png)
 
