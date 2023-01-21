@@ -16,11 +16,8 @@
       <li><a href="#" onclick="document.drawAllForms();">&nbsp;&nbsp;All&nbsp;&nbsp;</a></li>
       <li class="dropdown">
         <a href="javascript:void(0)" class="dropbtn">Composants</a>
-        <div class="dropdown-content">
-          <a href="#" onclick="drawForm('Immeuble');return false;">Immeuble</a>
-          <a href="#" onclick="drawForm('Triangle');return false;">Triangle</a>
-          <a href="#" onclick="drawForm('AbstractForm');return false;">AbstractForm</a>
-          <a href="#" onclick="drawForm('Planete');return false;">Planete</a>
+        <div class="dropdown-content" id="composants">
+          <a href="#" onclick="document.drawForm('Immeuble');return false;">Immeuble</a>
         </div>
       </li>
 
@@ -34,12 +31,6 @@
 
   <script type="module" src="js/main.js"></script>
   <script type="module" src="js/modules/index.js"></script>
-
-  <script>
-    function drawForm(formClassName) {
-      document.drawForm(formClassName)
-    }
-  </script>
 
 </body>
 

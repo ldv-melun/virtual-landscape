@@ -13,10 +13,12 @@ class AbstractForm {
     fillColor = '',
     strokeColor = '',
     strokeWidth = 2,
-    pesanteur = false
+    pesanteur = false,
+    orderConstruction = 100 
+        // le plus petit en premier, le plus grand en dernier
+        // voir la fonction buildAllForms de main.js
   ) {
     // ensure the arguments passed in are numbers
-    // a bit overkill for this tutorial
     this.x = Number(x)
     this.y = Number(y)
     this.width = Number(width)
@@ -25,6 +27,7 @@ class AbstractForm {
     this.strokeColor = strokeColor
     this.strokeWidth = strokeWidth
     this.pesanteur = pesanteur
+    this.orderConstruction = orderConstruction
   }
 
   // get keyword causes this method to be called

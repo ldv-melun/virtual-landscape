@@ -125,10 +125,22 @@ est une référence la fonction  `drawThisForm` du module `main.js` (importé ju
 ## ajouter/supprimer une nouvelle classe de forme
 <br>
 
-Voici où vous devriez alors intervenir  :
+Voici où intervenir  :
 
-* dans `index.html`, ajouter un ou supprimer un item à la liste `<li>` qui 
-définit la fonction `js` à appeler lorsque l'utilisateur clique sur le lien l'instruction 
+* dans `index.html`, ajouter un ou supprimer un item à la liste `<li>` des composants. Exemple 
+
+```html
+|...]
+ <li>
+   <a href="#" 
+      onclick="drawForm('MaNouvelleClasseDeForme');return false;">
+      MaNouvelleClasseDeForme
+   </a>
+ </li>
+ |...]
+```
+
+ Lorsque l'utilisateur clique sur le lien l'instruction 
 `return false;` qui suit est pour là pour stopper l'action normal du navigateur lorsque l'utilisateur clique sur un lien - comme suivre le lien ou scroller la page).     
 `
 
@@ -151,7 +163,6 @@ function buildForms() {
   // etc. pour chacune de vos classes
   return forms
 }
-
 
 ```
 

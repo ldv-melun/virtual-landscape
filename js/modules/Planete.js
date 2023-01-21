@@ -13,9 +13,9 @@ class Planete extends AbstractForm {
     fillColor = '',
     strokeColor = '',
     strokeWidth = 2,
-    pesenteur= false
+    pesenteur= false,
   ) {
-    super(x,y,width, height, fillColor, strokeColor, strokeWidth, pesenteur)
+    super(x,y,width, height, fillColor, strokeColor, strokeWidth, pesenteur, 1)
   }
 
   /**
