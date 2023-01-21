@@ -45,9 +45,9 @@ La structure des dossiers est simple.
 
 * `js/modues/index.js` : Déclare les classes des formes (à mettre à jour lorsque vous définissez une nouvelle classe)
 * `js/modues/AbstractForm.js` : c'est la classe de base des formes à venir (des exemples sont fournies)
-* `js/modues/Immeuble.js`, `Planet.js`  et `Triangle.js` sont des exemples.
+* `js/modues/Immeuble.js`, `Planete.js`  et `Triangle.js` sont des exemples.
 
-Conformément aux exemples fournis, vos nouvelles formes seront représentées par des classes héritant de `AbstractForm.js` et placées dans le dossier `modules`, et déclarées dans `modules/index.js`. 
+En résumé : Conformément aux exemples fournis, vos nouvelles formes seront représentées par des classes héritant de `AbstractForm.js` et placées dans le dossier `modules`, et déclarées dans `modules/index.js`. 
  
  
 ![analyse](docs/analyse.png)
@@ -127,8 +127,8 @@ La méthode `buildForms` est une **méthode de classe** qui prend en charge la c
 ## Comment démarrer ?
 
 1. Étudier le tutoriel https://developer.mozilla.org/fr/docs/Tutoriel_canvas/Utilisation_de_base - pour un internet ouvert - Fondation Mozilla open source (https://www.mozilla.org/fr/about/manifesto/)  
-2. Étudier le code des exemples dans `modules`, voir aussi `index.html` et `main.js`.
-3. Concevoir, sur le papier, une idée de dessin originale (faire simple pour commencer) - inspirez vous d'exemples glanés sur le net.
+2. Étudier le code des exemples dans `js/modules`. Pour les curieux, voir `index.html` et `main.js`.
+3. Concevoir, sur le papier, une idée de dessin originale (faire simple pour commencer, et avancer progressivement) - inspirez vous d'exemples glanés sur le net.
 4. Créer une nouvelle classe dans `modules` qui traduira votre idée originale en code 
 5. Ajouter cette classe à `modules/index.js` et ajouter un nouveau lien dans le dropdown `Composants` de `index.html` (voir ci-après)
 5. Mettre au point ... 
@@ -141,19 +141,19 @@ La méthode `buildForms` est une **méthode de classe** qui prend en charge la c
 
 La commande `Composants`, de la barre de menu, présente les différentes classes des formes présentes dans le dossier `js/modules`. Cette liste est actualisée tout de suite après le chargement de la page (pour les curieux, vous pouvez consulter la fonction `updateListeDesComposants` de `main.js`)
 
-Un clic utilisateur sur un des items de cette liste provoquera un appel à la fonction `drawForm` avec le nom de la classe en argument.     
+Un clic utilisateur sur un des items de cette liste provoquera un appel à la fonction `drawForm` avec le nom de la classe en argument. Cette fonction appelle la méthode de classe `buildForms` de la classe en question, pour contruire le rendu.
 
 <hr>
 
 ## ajouter/supprimer une nouvelle classe de forme
 <br>
 
-* Lors d'un ajout d'une nouvelle classe  (par exemple `MaNouvelleFome.js`), redéfinir les méthodes `static buildForms()` et ` draw(ctx)`. Prendre exemple sur `Immeuble`, `Triangle`, `Planete`
+* Lors d'un ajout d'une nouvelle classe  (par exemple `MaNouvelleFome.js`), redéfinir les méthodes `static buildForms()` et ` draw(ctx)`. Prendre exemple sur `Immeuble`, `Triangle`, `Planete`. Ne pas oublier d'ajouter cette classe en **export** de `js/modues/index.js`.
 
 
 ATTENTION à bien respecter les conventions de nommage. 
-* Le nom des classes doit être de la forme `̀UpperCamelCase`
-* Le nom des méthode doit être de la forme `̀LowerCamelCase`
+* Le nom des classes doit être de la forme `UpperCamelCase`
+* Le nom des méthodes doit être de la forme `LowerCamelCase`
 * Une classe est définie dans un fichier de **même nom que le nom de la classe** (avec extension `.js`)
 
 <hr>
