@@ -80,7 +80,7 @@ requête de type `http://` (et non en protocole `file://`)
 
 Sous VS, vous pouvez installer l'extension `Live Server`. Une fois installée, vous pouvez faire clic droit sur `index.html` pour lancer une instance d'un serveur HTTP, sur un port particulier, de votre machine locale. Ainsi votre application est-elle prête à être testée. 
 
-### Comment démarrer ?
+## Comment démarrer ?
 
 1. Étudier le tutoriel https://developer.mozilla.org/fr/docs/Tutoriel_canvas/Utilisation_de_base - pour un internet ouvert - Fondation Mozilla open source (https://www.mozilla.org/fr/about/manifesto/)  
 2. Étudier le code de `index.html`, `main.js` et autres de l'application.
@@ -89,9 +89,11 @@ Sous VS, vous pouvez installer l'extension `Live Server`. Une fois installée, v
 5. Ajouter cette classe à `modules/index.js` et ajouter un nouveau lien dans le dropdown `Composants` de `index.html` (voir ci-après)
 5. Mettre au point ... 
 
-### Analyse du code existant
+<hr>
 
-#### index.html
+## Analyse du code existant
+
+### index.html
 
 La barre de menu contient une liste déroulante présentant les composants de forme
 
@@ -133,8 +135,9 @@ définit la fonction `js` à appeler lorsque l'utilisateur clique sur le lien l'
 `return false;` qui suit est pour là pour stopper l'action normal du navigateur lorsque l'utilisateur clique sur un lien - comme suivre le lien ou scroller la page).     
 `
 
-* dans `main.js`, modifier les fonctions `buildForms` et ajouter votre classe dans l'export de  `modules/index.js`  
+* dans `main.js`, modifier la fonction `buildForms` et ajouter votre classe dans l'export de  `modules/index.js`  
 
+_main.js_
 ```javascript
 
 /**
@@ -153,18 +156,18 @@ function buildForms() {
 }
 
 
-/**
- *  Dessine uniquement la forme passée dont le nom est reçu en paramètre  (attention, le fichier modules/index.js doit être mis à jour pour chaque classe ajoutée)
- * @param whichForm le nom d'une classe héritant d'AbstractForm dans modules
- */
-function drawThisForm(whichForm) {
-  const mod = modulesForms;
-  if (typeof mod[whichForm] !== undefined) {
-    _drawForms(mod[whichForm].buildForms())
-  }
+```
 
+_index.js_
+```javascript
+export { Immeuble } from './Immeuble.js';
+export { Triangle } from './Triangle.js';
+export { Planete } from './Planete.js';
+export { AbstractForm } from './AbstractForm.js';
+// etc.
 
 ```
+
 
 * Lors d'un ajout d'une nouvelle classe  (par exemple `MaNouvelleFome.js`), redéfinir les méthodes `static buildForms()` et ` draw(ctx)`. Prendre exemple sur `Immeuble` et `Triangle`
 
@@ -173,20 +176,27 @@ function drawThisForm(whichForm) {
 
 <hr>
 
-### Pour info, des exemples (étudiants 2020)
+## Pour info, des exemples (étudiants 2020)
 
- ![old-example](docs/exemple-1-2020.png)
+ ![etudiant-example](docs/exemple-1-2020.png)
 
-![old-example](docs/exemple-2-2020.png)
+ ![etudiant-example](docs/exemple-5-2020.png)
 
- ![old-example](docs/exemple-3-2020.png)
+ ![etudiant-example](docs/exemple-6-2020.png)
  
+ ![etudian-example](docs/exemple-2-2020.png)
+
+ ![etudiant-example](docs/exemple-3-2020.png)
+ 
+ ![etudiant-example](docs/exemple-4-2020.png)
 
 <hr>
 
-### Un historique en java (étudiant) 
+## Un historique en java (étudiant) 
 
- ![old-example](docs/java-paysage-virutel.png)
+<br>
+
+ ![etudiant-example](docs/java-paysage-virutel.png)
 
 [Exemple d'un projet d'étudiant - code et executable en java](docs/java-genPaysageEtudiant.zip) 
 
@@ -198,4 +208,15 @@ Une fois décompressé :
 
 `=> le code source : ./genPaysage/*`
 
+<hr>
+
+## Ressources externes
+
+- Comprendre le `canvas` : https://developer.mozilla.org/fr/docs/Web/API/Canvas_API/Tutorial/Basic_usage
+
+
+- (autre ressource) Dessiner dans un canvas : https://www.w3schools.com/graphics/canvas_drawing.asp
+
+
+- Si vous souhaitez ajouter à l'application la possibilité de sauvegarder le rendu d'un canvas, à un instant _t_  :  Comment télécharger l'image d'un canvas en js : https://nosmoking.developpez.com/demos/js/canvas-download.html
 
