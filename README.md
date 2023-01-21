@@ -16,25 +16,22 @@ Objectifs
 ```
 .
 ├── css
-│   ├── lavalamp.png
 │   ├── layout.css
-│   ├── menu_bg.png
-│   ├── menu.css
-│   └── menu_line.png
+│   └── menu.css
 ├── docs
 │   ├── analyse.dia
 │   ├── analyse.png
-│   ├── java-genPaysageEtudiant.zip
-│   └── java-paysage-virutel.png
-├── index.html
+│   └── ...
 ├── js
 │   ├── main.js
 │   └── modules
 │       ├── index.js
 │       ├── AbstractForm.js
 │       ├── Immeuble.js
-│       └── Triangle.js
-└── README.md
+│       ├── Triangle.js
+│       └── ...
+├── README.md
+└── index.html
 ```
 
 * `index.html` : le point d'entrée de l'interprétation par un navigateur. Hormis les inclusion `css`, 
@@ -114,9 +111,9 @@ un appel à la fonction `drawForm`.
 <script type="module" src="js/main.js"></script>
 
 <script>
-  function drawForm(form) {
-    document.drawForm(form)
-  }
+    function drawForm(formClassName) {
+      document.drawForm(formClassName)
+    }
 </script>
 
 ``` 
