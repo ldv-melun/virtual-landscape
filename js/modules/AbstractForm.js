@@ -101,8 +101,8 @@ class AbstractForm {
    *
    */
   static buildForms() {
-    const aForm1 = new AbstractForm(250, 70, 100, 100, 'gold', '', 2, true)
-    const aForm2 = new AbstractForm(250, 70, 100, 100, 'gold', '', 2, false)
+    const aForm1 = new AbstractForm(250, 70, 100, 100, 'gold', '', 2, true, 101)
+    const aForm2 = new AbstractForm(250, 70, 100, 100, 'gold', '', 2, false, 101)
     return [aForm1, aForm2]
   }
 

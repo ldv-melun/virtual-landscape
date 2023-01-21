@@ -56,7 +56,7 @@ function buildAllForms() {
     allForms.push(...mod[keys[i]].buildForms())
 
   // les formes sont trièes selon leur ordre de construction (priorité au plus petits)  
-  return allForms.sort((a, b) => a.orderConstruction - b.orderConstruction)
+  return allForms.sort((a, b) => a.ordreConstruction - b.ordreConstruction)
 
 }
 
