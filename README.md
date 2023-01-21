@@ -11,7 +11,10 @@ Objectifs
 
 ### Squelette de l'application
 
-#### structure des dossiers
+L'application utilse **Vanilla JS framework**. 
+
+La structure des dossiers est simple.
+
 
 ```
 .
@@ -34,53 +37,97 @@ Objectifs
 └── index.html
 ```
 
-* `index.html` : le point d'entrée de l'interprétation par un navigateur. Hormis les inclusion `css`, 
-ce fichier contient quelques instructions `javascript` faisant appel à des fonction de `main.js`
-* `css`     : Thème simple, avec une barre de menu
-* `main.js` : Déclare utiliser des modules (des classes `js`) et définit 2 fonctions : ̀
+* `index.html` : Point d'entrée de l'interprétation par un navigateur. Les dépendances de ce fichier sont les feuiiles de styles `css`, et l'inclusion du script `js/main.js`.
 
+* `main.js` : Le chef d'orchestre. Le code qui pilote les actions de dessins. Ce code exploite les classes déclarées dans `js/modules` qui héritent de `AbstractForm`. 
 
-```javascript 
-/**
- *  dessine uniquement la forme passée dont le nom est reçu en paramètre
- * @param whichForm 
- */
-function drawThisForm(whichForm) {
-  const mod = modulesForms;
-  if (typeof mod[whichForm] !== undefined) {
-    _drawForms(mod[whichForm].buildForms())
-  }
-}
+* le dossier `js/modules` contient le code source de classes javascript chargées de dessinner des formes. C'est dans ce dossier que vous placerez vos classes représentant les formes issues de votre imagination. 
 
-function drawAllForms () {
-  _drawForms(buildForms())
-}
-```
+* `js/modues/index.js` : Déclare les classes des formes (à mettre à jour lorsque vous définissez une nouvelle classe)
+* `js/modues/AbstractForm.js` : c'est la classe de base des formes à venir (des exemples sont fournies)
+* `js/modues/Immeuble.js`, `Planet.js`  et `Triangle.js` sont des exemples.
 
-le dossier `modules` : il contient le code source de classes javascript. C'est dans ce dossier 
-que vous placerez vos classes représentant les formes issues de votre imagination. 
-
-* `index.js`: qui déclare les classes des formes (à mettre à jour lorsque vous définissez une nouvelle classe)
-* `AbstractForm.js` : c'est la classe de base des formes à venir (des exemples sont fournies)
-* `Immeuble.js`, `Planet.js`  et `Triangle.js` sont des exemples.
-
-Les nouvelles formes seront représentées par des classes héritant de `AbstractForm.js` et placées dans le dossier `modules`, conformément aux exemples fournis 
+Conformément aux exemples fournis, vos nouvelles formes seront représentées par des classes héritant de `AbstractForm.js` et placées dans le dossier `modules`, et déclarées dans `modules/index.js`. 
  
  
 ![analyse](docs/analyse.png)
 
 
-#### Délivrée par un serveur HTTP
+### Classe de forme
 
-Attention, l'application doit être placée derrière en serveur HTTP, et donc accessible à un utilisateur en réponse à une 
-requête de type `http://` (et non en protocole `file://`)  
+Une classe qui doit commencer par :
 
-Sous VS, vous pouvez installer l'extension `Live Server`. Une fois installée, vous pouvez faire clic droit sur `index.html` pour lancer une instance d'un serveur HTTP, sur un port particulier, de votre machine locale. Ainsi votre application est-elle prête à être testée. 
+```javascript
+
+import { AbstractForm } from './AbstractForm.js';
+
+/**
+ * Déssine un ?????
+ */
+class ????? extends AbstractForm {
+   constructor (
+    x = 0,
+    y = 0,
+    width = 0,
+    height = 0,
+    fillColor = '',
+    strokeColor = '',
+    strokeWidth = 2,
+    pesenteur = false,
+    odreConstruction = 100
+  ) {
+    super(x,y,width, height, fillColor, strokeColor, strokeWidth, pesenteur, odreConstruction)
+  }
+
+ /**
+   * Dessine la forme spécifique à cette classe
+   * @param ctx contexte 2D du canvas
+   */
+  draw (ctx) {
+    ctx.save()
+
+    // votre code ici
+
+    ctx.restore()
+  }
+
+ /**
+   * get array of instances of this classe 
+   * @return {[Object,...]}
+   */
+  static buildForms() {
+    let forms = []
+
+
+    // votre code ici
+
+
+    return forms
+  }
+
+```
+
+La méthode `draw` est une **méthode d'instance** qui prend en charge la logique de dessin d'une forme primitive à partir d'un _context 2D_ reçu en paramètre.
+
+La méthode `buildForms` est une **méthode de classe** qui prend en charge la construction d'un motif, composé **d'instances la classe** afin de produire un réultat avec une dose d'aléatoire. Par exemple, construction de plusieurs instances de la classe `Triangle` disposées aléatroirement. Cette méthode retourne un tableau d'instances de la classe.
+
+### Attributs d'une forme (à renseigner lors d'une instanciation)
+
+- `x = 0`  coordonnées en x et y du dessin dans son canvas
+- `y = 0`
+- `width = 0`   largeur et hauteur de la zone de la forme
+- `height = 0`
+- `fillColor = ''`   voir fillStyle
+- `strokeColor = ''` voir strokeStyle
+- `strokeWidth = 2`  largeur des traits
+- `pesenteur` : (booléen) si `true`, l'objet sera comme _posé sur le sol_ 
+- `ordreConstruction` : (entier) définit si l'objet sera dessiné avant ou après d'autres. (dans les derniers par défaut). Une valeur minimal marque l'objet comme devant être dessiné en premier (comme _Planete_ par exemple), un valeur _maximale_ provoquera l'affichage de l'objet dans les derniers.
+
 
 ## Comment démarrer ?
 
 1. Étudier le tutoriel https://developer.mozilla.org/fr/docs/Tutoriel_canvas/Utilisation_de_base - pour un internet ouvert - Fondation Mozilla open source (https://www.mozilla.org/fr/about/manifesto/)  
-2. Étudier le code de `index.html`, `main.js` et autres de l'application.
+2. Étudier le code des exemples dans `modules`, voir aussi `index.html` et `main.js`.
 3. Concevoir, sur le papier, une idée de dessin originale (faire simple pour commencer) - inspirez vous d'exemples glanés sur le net.
 4. Créer une nouvelle classe dans `modules` qui traduira votre idée originale en code 
 5. Ajouter cette classe à `modules/index.js` et ajouter un nouveau lien dans le dropdown `Composants` de `index.html` (voir ci-après)
@@ -92,95 +139,33 @@ Sous VS, vous pouvez installer l'extension `Live Server`. Une fois installée, v
 
 ### index.html
 
-La barre de menu contient une liste déroulante présentant les composants de forme
+La commande `Composants`, de la barre de menu, présente les différentes classes des formes présentes dans le dossier `js/modules`. Cette liste est actualisée tout de suite après le chargement de la page (pour les curieux, vous pouvez consulter la fonction `updateListeDesComposants` de `main.js`)
 
-```html
-  <li><a class="hsubs" href="#">Composant</a>
-      <ul class="subs">
-        <li><a href="#" onclick="drawForm('Immeuble');return false;">Immeuble</a></li>
-        <li><a href="#" onclick="drawForm('Triangle');return false;">Triangle</a></li>
-        <li><a href="#" onclick="drawForm('AbstractForm');return false;">AbstractForm</a></li>
-      </ul>
-  </li>
-```
+Un clic utilisateur sur un des items de cette liste provoquera un appel à la fonction `drawForm` avec le nom de la classe en argument.     
 
-Un clic utilisateur sur un des items de cette liste provoquera 
-un appel à la fonction `drawForm`.
-
-```javascript
-<script type="module" src="js/main.js"></script>
-
-<script>
-    function drawForm(formClassName) {
-      document.drawForm(formClassName)
-    }
-</script>
-
-``` 
-En allant voir  `main.js` on comprend que la fonction `drawForm` 
-est une référence la fonction  `drawThisForm` du module `main.js` (importé juste avant)
-  
 <hr>
 
 ## ajouter/supprimer une nouvelle classe de forme
 <br>
 
-Voici où intervenir  :
-
-* dans `index.html`, ajouter un ou supprimer un item à la liste `<li>` des composants. Exemple 
-
-```html
-|...]
- <li>
-   <a href="#" 
-      onclick="drawForm('MaNouvelleClasseDeForme');return false;">
-      MaNouvelleClasseDeForme
-   </a>
- </li>
- |...]
-```
-
- Lorsque l'utilisateur clique sur le lien l'instruction 
-`return false;` qui suit est pour là pour stopper l'action normal du navigateur lorsque l'utilisateur clique sur un lien - comme suivre le lien ou scroller la page).     
-`
-
-* dans `main.js`, modifier la fonction `buildForms` et ajouter votre classe dans l'export de  `modules/index.js`  
-
-_main.js_
-```javascript
-
-/**
- * construit les différentes formes du paysage, en appelant la méthode statique
- * buildForms de chacune des classes
- * 
- * @return {Object[]}
- */
-function buildForms() {
-  let forms = Immeuble.buildForms()
-  forms = forms.concat(Triangle.buildForms())
-  forms = forms.concat(AbstractForm.buildForms())
-  // à compléter/modifier
-  // etc. pour chacune de vos classes
-  return forms
-}
-
-```
-
-_index.js_
-```javascript
-export { Immeuble } from './Immeuble.js';
-export { Triangle } from './Triangle.js';
-export { Planete } from './Planete.js';
-export { AbstractForm } from './AbstractForm.js';
-// etc.
-
-```
+* Lors d'un ajout d'une nouvelle classe  (par exemple `MaNouvelleFome.js`), redéfinir les méthodes `static buildForms()` et ` draw(ctx)`. Prendre exemple sur `Immeuble`, `Triangle`, `Planete`
 
 
-* Lors d'un ajout d'une nouvelle classe  (par exemple `MaNouvelleFome.js`), redéfinir les méthodes `static buildForms()` et ` draw(ctx)`. Prendre exemple sur `Immeuble` et `Triangle`
+ATTENTION à bien respecter les conventions de nommage. 
+* Le nom des classes doit être de la forme `̀UpperCamelCase`
+* Le nom des méthode doit être de la forme `̀LowerCamelCase`
+* Une classe est définie dans un fichier de **même nom que le nom de la classe** (avec extension `.js`)
 
- ![exemple en version de base](docs/exemple-app-init.png)
+<hr>
 
+### Accessible via un serveur HTTP
+
+Attention, l'application doit être placée derrière en serveur HTTP, et donc accessible à un utilisateur en réponse à une 
+requête `HTTP`, commençant par `http://` (et non en protocole `file://`)  
+
+Sous VS, vous pouvez installer l'extension `Live Server`. Une fois installée, vous pouvez faire clic droit sur `index.html` pour lancer une instance d'un serveur HTTP, sur un port particulier, de votre machine locale. Ainsi votre application est-elle prête à être testée. 
+
+![exemple en version de base](docs/exemple-app-init.png)
 
 <hr>
 

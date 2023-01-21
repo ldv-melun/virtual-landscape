@@ -14,7 +14,7 @@ class AbstractForm {
     strokeColor = '',
     strokeWidth = 2,
     pesanteur = false,
-    orderConstruction = 100 
+    ordreConstruction = 100 
         // le plus petit en premier, le plus grand en dernier
         // voir la fonction buildAllForms de main.js
   ) {
@@ -27,7 +27,7 @@ class AbstractForm {
     this.strokeColor = strokeColor
     this.strokeWidth = strokeWidth
     this.pesanteur = pesanteur
-    this.orderConstruction = orderConstruction
+    this.ordreConstruction = ordreConstruction
   }
 
   // get keyword causes this method to be called
@@ -96,7 +96,7 @@ class AbstractForm {
   }
 
   /**
-   * get array of forms (must be override by subclasses)
+   * get array of instances of this class (must be override by subclasses)
    * @return {[Object,...]}
    *
    */

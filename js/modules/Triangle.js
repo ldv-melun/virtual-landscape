@@ -13,9 +13,10 @@ class Triangle extends AbstractForm {
     fillColor = '',
     strokeColor = '',
     strokeWidth = 2,
-    pesenteur= false
+    pesenteur= false,
+    ordreConstruction = 100
   ) {
-    super(x,y,width, height, fillColor, strokeColor, strokeWidth, pesenteur)
+    super(x,y,width, height, fillColor, strokeColor, strokeWidth, pesenteur, ordreConstruction)
   }
 
 

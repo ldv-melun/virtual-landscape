@@ -1,11 +1,5 @@
 
-import { Immeuble } from './modules/Immeuble.js';
-import { Triangle } from './modules/Triangle.js';
-import { Planete } from './modules/Planete.js';
-import { AbstractForm } from './modules/AbstractForm.js';
-
 import * as modulesForms from "./modules/index.js"; // pour drawThisForm
-
 
 var cwPrev = null
 var chPrev = null
@@ -56,14 +50,14 @@ function buildAllForms() {
   // console.log(Object.keys(mod))
   // console.log(Object.values(mod)[0].buildForms()[0].orderConstruction)
   // console.log(Object.keys(mod))
-  
+
   let keys = Object.keys(mod)
-  for (let i=0; i<keys.length; i++)
+  for (let i = 0; i < keys.length; i++)
     allForms.push(...mod[keys[i]].buildForms())
 
-  // les formes sont trièes selon leur ordre de construction  
-  return allForms.sort((a,b) => a.orderConstruction - b.orderConstruction)
-  
+  // les formes sont trièes selon leur ordre de construction (priorité au plus petits)  
+  return allForms.sort((a, b) => a.orderConstruction - b.orderConstruction)
+
 }
 
 /**
@@ -75,7 +69,7 @@ function drawThisForm(formClassName) {
   if (typeof mod[formClassName] !== undefined) {
     _drawForms(mod[formClassName].buildForms())
   }
-  
+
 }
 
 /**
@@ -89,28 +83,32 @@ function drawAllForms() {
  * Update listes des composants
  */
 function updateListeDesComposants() {
-   let composants = document.getElementById("composants")
-  
-   // delete la listes de composants
-   while (composants.firstChild) {
+  let composants = document.getElementById("composants")
+
+  // vide la liste de composants
+  while (composants.firstChild) {
     composants.removeChild(composants.lastChild);
   }
 
   // reconstruction d'après les classes placées dans le module
-   const formesModules = modulesForms;
-   let keys = Object.keys(formesModules)
-   keys.forEach( formClassName => composants.appendChild(createLinkComposant(formClassName)))
+  const formesModules = modulesForms;
+  let keys = Object.keys(formesModules)
+  keys.forEach(formClassName => composants.appendChild(createLinkComposant(formClassName)))
 
 
-   // au debut, dessine toutes les formes
-   drawAllForms()
+  // au debut, dessine toutes les formes
+  drawAllForms()
 }
 
-
+/**
+ * Construit un element <a> appelant la fonction drawForm avec le nom d'une classe en argument
+ * @param {string} formClassName 
+ * @returns HTMLElement
+ */
 function createLinkComposant(formClassName) {
   let comp = document.createElement("a")
   comp.setAttribute('href', "#")
-  comp.setAttribute('onclick', "document.drawForm(\'"+formClassName+"\');return false;")
+  comp.setAttribute('onclick', "document.drawForm(\'" + formClassName + "\');return false;")
   comp.innerText = formClassName;
   return comp
 }
