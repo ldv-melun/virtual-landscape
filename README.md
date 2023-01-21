@@ -4,9 +4,9 @@ Projet de développement logiciel à destinatation d'apprentis développeur.
 
 Objectifs  
 
-* prise en main d'une petite application javascript (sans framework)
+* prise en main d'un existant : petite application javascript (sans framework)
 * programmation en javascript dans une approche objet et événementielle
-* utilisation de l'API 2D JS intégrée
+* aborder une nouvelle technolgie en mode autodidacte (utilisation de l'API 2D JS intégrée)
 * développement de la créativité  
 
 ### Squelette de l'application
