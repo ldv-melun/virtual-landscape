@@ -16,9 +16,10 @@ class Immeuble extends AbstractForm {
     fillColor = '',
     strokeColor = '',
     strokeWidth = 2,
-    pesanteur = false
+    pesanteur = false,
+    ordreConstruction = 100
   ) {
-    super(x, y, width, height, fillColor, strokeColor, strokeWidth, pesanteur)
+    super(x, y, width, height, fillColor, strokeColor, strokeWidth, pesanteur, ordreConstruction)
   }
 
   /**
@@ -45,18 +46,17 @@ class Immeuble extends AbstractForm {
     ctx.beginPath()
     ctx.strokeStyle = this.strokeColor
 
-    const MAX_HEAD = 80
-    const MAX_FENETRE_ETAGE = Math.floor(Math.random()*6) + 5
-    const MAX_ETAGE = Math.floor(Math.random()*18) + 4
+    const MAX_FENETRE_ETAGE = Math.floor(Math.random()*16) + 4
+    const MAX_ETAGE = Math.floor(Math.random()*8) + 4
 
     // la hauteur de l'immeuble tient compte de l'arrondi du calcul de la hauteur d'un étage
     this.height = Math.floor(this.height / MAX_ETAGE) * MAX_ETAGE
 
-    let new_y = (this.pesanteur) ? window.innerHeight - this.height - MAX_HEAD : this.y
+    let new_y = (this.pesanteur) ? ctx.canvas.height - this.height : this.y
     let wCase = Math.floor(this.width / MAX_FENETRE_ETAGE)
     let hCase = Math.floor(this.height / MAX_ETAGE)
 
-    // console.log("this.x = " + this.x + "  new_y = " + new_y)
+    console.log("MAX_ETAGE :" + MAX_ETAGE + "  MAX_FENETRE_ETAGE :" + MAX_FENETRE_ETAGE)
 
     // https://developer.mozilla.org/fr/docs/Tutoriel_canvas/Ajout_de_styles_et_de_couleurs
     for (let i = 0; i < MAX_FENETRE_ETAGE; i++) {

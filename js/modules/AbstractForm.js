@@ -73,8 +73,8 @@ class AbstractForm {
     ctx.beginPath()
     ctx.strokeStyle = this.strokeColor
 
-    const MAX_HEAD = 80
-    let new_y = (this.pesanteur) ? window.innerHeight - this.height - MAX_HEAD : this.y
+    const MAX_HEAD = 0
+    let new_y = (this.pesanteur) ? ctx.canvas.height  - this.height - MAX_HEAD : this.y
 
     ctx.rect(this.x, new_y, this.width, this.height)
     // draw the path to screen
