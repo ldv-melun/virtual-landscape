@@ -1,5 +1,5 @@
 
-import * as modulesForms from "./modules/index.js"; // pour drawThisForm
+import * as lesModulesulesForms from "./modules/index.js"; 
 
 var cwPrev = null
 var chPrev = null
@@ -44,16 +44,16 @@ function _drawForms(forms) {
  * @return {Object[]}
  */
 function buildAllForms() {
-  const mod = modulesForms;
+  const lesModules = lesModulesulesForms;
   const allForms = []
 
-  // console.log(Object.keys(mod))
-  // console.log(Object.values(mod)[0].buildForms()[0].orderConstruction)
-  // console.log(Object.keys(mod))
+  // console.log(Object.classNames(lesModules))
+  // console.log(Object.values(lesModules)[0].buildForms()[0].orderConstruction)
 
-  let keys = Object.keys(mod)
-  for (let i = 0; i < keys.length; i++)
-    allForms.push(...mod[keys[i]].buildForms())
+  // construit une liste (allForms) à partir d'un ensemble de listes (buildForms()) 
+  let classNames = Object.keys(lesModules)
+  for (let i = 0; i < classNames.length; i++)
+    allForms.push(...lesModules[classNames[i]].buildForms())
 
   // les formes sont trièes selon leur ordre de construction (priorité au plus petits)  
   return allForms.sort((a, b) => a.ordreConstruction - b.ordreConstruction)
@@ -61,13 +61,13 @@ function buildAllForms() {
 }
 
 /**
- * Dessine uniquement la forme passée dont le nom est reçu en paramètre  (attention, le fichier modules/index.js doit être mis à jour pour chaque classe ajoutée)
- * @param formClassName le nom d'une classe héritant d'AbstractForm dans modules
+ * Dessine uniquement la forme passée dont le nom est reçu en paramètre  (attention, le fichier lesModulesules/index.js doit être mis à jour pour chaque classe ajoutée)
+ * @param formClassName le nom d'une classe héritant d'AbstractForm dans lesModulesules
  */
 function drawThisForm(formClassName) {
-  const mod = modulesForms;
-  if (typeof mod[formClassName] !== undefined) {
-    _drawForms(mod[formClassName].buildForms())
+  const lesModules = lesModulesulesForms;
+  if (typeof lesModules[formClassName] !== undefined) {
+    _drawForms(lesModules[formClassName].buildForms())
   }
 
 }
@@ -90,10 +90,10 @@ function updateListeDesComposants() {
     composants.removeChild(composants.lastChild);
   }
 
-  // reconstruction d'après les classes placées dans le module
-  const formesModules = modulesForms;
-  let keys = Object.keys(formesModules)
-  keys.forEach(formClassName => composants.appendChild(createLinkComposant(formClassName)))
+  // reconstruction de la listes des formes d'après les classes placées dans js/lesModulesules
+  const formeslesModulesules = lesModulesulesForms;
+  let classNames = Object.keys(formeslesModulesules)
+  classNames.forEach(formClassName => composants.appendChild(createLinkComposant(formClassName)))
 
 
   // au debut, dessine toutes les formes
@@ -114,7 +114,7 @@ function createLinkComposant(formClassName) {
 }
 
 
-// accroche des fonctions du module au document courant (pour être appelées ensuite)
+// accroche des fonctions au document courant (pour être appelées ensuite)
 document.drawForm = drawThisForm
 document.drawAllForms = drawAllForms
 
@@ -122,4 +122,3 @@ document.drawAllForms = drawAllForms
 // exécutions de fonctions sur événement 
 document.addEventListener('DOMContentLoaded', updateListeDesComposants)
 visualViewport.addEventListener('resize', document.drawAllForms)
-

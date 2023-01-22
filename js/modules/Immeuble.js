@@ -56,7 +56,7 @@ class Immeuble extends AbstractForm {
     let wCase = Math.floor(this.width / MAX_FENETRE_ETAGE)
     let hCase = Math.floor(this.height / MAX_ETAGE)
 
-    console.log("MAX_ETAGE :" + MAX_ETAGE + "  MAX_FENETRE_ETAGE :" + MAX_FENETRE_ETAGE)
+    // console.log("MAX_ETAGE :" + MAX_ETAGE + "  MAX_FENETRE_ETAGE :" + MAX_FENETRE_ETAGE)
 
     // https://developer.mozilla.org/fr/docs/Tutoriel_canvas/Ajout_de_styles_et_de_couleurs
     for (let i = 0; i < MAX_FENETRE_ETAGE; i++) {
