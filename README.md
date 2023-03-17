@@ -22,10 +22,11 @@ C'est un projet de développement logiciel à destinatation d'apprentis dévelop
 * Développer sa créativité  
 
 Exemples de travaux étudiants (copies écran) :
-
-!<img src="https://raw.githubusercontent.com/ldv-melun/virtual-landscape/master/docs/exemple-1-2020.png" height="80">
-!<img src="https://raw.githubusercontent.com/ldv-melun/virtual-landscape/master/docs/exemple-5-2020.png" height="80">
-!<img src="https://raw.githubusercontent.com/ldv-melun/virtual-landscape/master/docs/exemple-6-2020.png" height="80">
+<p float="left">
+<img src="https://raw.githubusercontent.com/ldv-melun/virtual-landscape/master/docs/exemple-1-2020.png" height="80">
+<img src="https://raw.githubusercontent.com/ldv-melun/virtual-landscape/master/docs/exemple-5-2020.png" height="80">
+<img src="https://raw.githubusercontent.com/ldv-melun/virtual-landscape/master/docs/exemple-6-2020.png" height="80">
+</p>
 
 ## I/ Comprendre le canvas HTML
 
