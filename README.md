@@ -1,20 +1,94 @@
 ## Générateur de paysages virtuels 
 
-Projet de développement logiciel à destinatation d'apprentis développeur.
+Cette application génère, à chaque fois qu'elle est activée (ou rechargée), un paysage imaginaire, construit avec du code JavaScript.
+
+C'est un projet de développement logiciel à destinatation d'apprentis développeur.
 
 Objectifs  
 
-* prise en main d'un existant : petite application javascript (sans framework)
-* programmation en javascript dans une approche objet et événementielle
-* aborder une nouvelle technolgie en mode autodidacte (utilisation de l'API 2D JS intégrée)
-* développement de la créativité  
+* Apprendre à prendre en main un existant : petite application javascript (sans framework)
+* Apprendre à programmer en javascript dans une approche objet et événementielle
+* Aborder une nouvelle technolgie en mode autodidacte (utilisation de l'API 2D JS intégrée)
+* Développer sa créativité  
 
-### Squelette de l'application
+Exemples de travaux étudiants :
+
+<img src="https://raw.githubusercontent.com/ldv-melun/virtual-landscape/master/docs/exemple-1-2020.png" height="80">
+<img src="https://raw.githubusercontent.com/ldv-melun/virtual-landscape/master/docs/exemple-5-2020.png" height="80">
+<img src="https://raw.githubusercontent.com/ldv-melun/virtual-landscape/master/docs/exemple-6-2020.png" height="80">
+
+## I/ Comprendre le canvas HTML
+
+1. Étudier le tutoriel https://developer.mozilla.org/fr/docs/Tutoriel_canvas/Utilisation_de_base - pour un internet ouvert - Fondation Mozilla open source (https://www.mozilla.org/fr/about/manifesto/)
+
+
+## II/ Travaux pratiques
+
+2. Reprendre le canvas de base du tutoriel: [Canvas Basic Usage](https://developer.mozilla.org/fr/docs/Web/API/Canvas_API/Tutorial/Basic_usage)
+
+```html
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <script type="application/javascript">
+    function draw() {
+      var canvas = document.getElementById("canvas");
+      if (canvas.getContext) {
+        var ctx = canvas.getContext("2d");
+
+        ctx.fillStyle = 'rgb(200, 0, 0)';
+        ctx.fillRect(10, 10, 50, 50);
+
+        ctx.fillStyle = 'rgba(0, 0, 200, 0.5)';
+        ctx.fillRect(30, 30, 50, 50);
+      }
+    }
+  </script>
+</head>
+<body onload="draw();">
+<canvas id="canvas" width="150" height="150"></canvas>
+</body>
+</html>
+```
+Aller ensuite sur la page suivante du tutoriel : https://developer.mozilla.org/fr/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes
+
+Le tutoriel vous donne le code de cette forme :
+
+<img src="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes/canvas_smiley.png">
+
+**2.1.** Peindre les yeux en une couleur de votre choix
+
+**2.2.** Concevoir **2 autres expressions type smileys de votre choix - avec des couleurs**, sur la base de celle donnée. (temps estimé 2h à 3h). Vous chercherez à conserver l'esthétique initiale (à garder le même thème sur l'ensemble de votre création) 
+
+## III/ Présentation de l'application
+
+À ce niveau là, vous avez acquis une certaine expérience dans le dessin vectoriel via l'API 2D. 
+
+Nous allons maintenant découvrir l'application JS support, afin de la faire évouler.
+
+### Prise en main
+
+Télécharger l'application dans un **dossier dédié**.
+
+### Accessible via un serveur HTTP
+
+Attention, l'application doit être placée derrière en serveur HTTP, et donc accessible à un utilisateur en réponse à une requête `HTTP`, commençant par `http://` (et non en protocole `file://`)
+
+Sous VS, vous pouvez installer l'extension `Live Server`. Une fois installée, vous pouvez faire clic droit sur `index.html` pour lancer une instance d'un serveur HTTP, sur un port particulier, de votre machine locale. Ainsi votre application est-elle prête à être testée.
+
+![exemple en version de base](docs/exemple-app-init.png)
+
+Tester l'application en actionnant ses différents commandes dans ses menus.
+
+L'application est livrée avec des formes de base qu'il faudra retirer (sauf `Immeuble` si vous souhaitez l'améliorer, en ajoutant aléatoirement des fenêtres éclairées par exemple, ou autres...)
+
+### Arborescence des dossiers
 
 L'application utilse **Vanilla JS framework**. 
 
-La structure des dossiers est simple.
-
+La structure des dossiers est relativement simple.
 
 ```
 .
@@ -41,7 +115,7 @@ La structure des dossiers est simple.
 
 * `main.js` : Le chef d'orchestre. Le code qui pilote les actions de dessins. Ce code exploite les classes déclarées dans `js/modules` qui héritent de `AbstractForm`. 
 
-* le dossier `js/modules` contient le code source de classes javascript chargées de dessinner des formes. C'est dans ce dossier que vous placerez vos classes représentant les formes issues de votre imagination. 
+* le dossier `js/modules` contient le code source de classes javascript chargées de dessinner des formes. **C'est dans ce dossier que vous placerez vos classes représentant les formes issues de votre imagination**. 
 
 * `js/modues/index.js` : Déclare les classes des formes (à mettre à jour lorsque vous définissez une nouvelle classe)
 * `js/modues/AbstractForm.js` : c'est la classe de base des formes à venir (des exemples sont fournies)
@@ -55,7 +129,9 @@ En résumé : Conformément aux exemples fournis, vos nouvelles formes seront re
 
 ### Classe de forme
 
-Une classe qui doit commencer par :
+Ces classes sont spécialisées dans une forme donnée, comme dans les exemples.
+
+Une classe de forme hérite de `AbstractForm` (ses attributs sont présentés plus loin) :
 
 ```javascript
 
@@ -64,7 +140,7 @@ import { AbstractForm } from './AbstractForm.js';
 /**
  * Déssine un ?????
  */
-class ????? extends AbstractForm {
+export class ????? extends AbstractForm {
    constructor (
     x = 0,
     y = 0,
@@ -109,7 +185,8 @@ class ????? extends AbstractForm {
 
 La méthode `draw` est une **méthode d'instance** qui prend en charge la logique de dessin d'une forme primitive à partir d'un _context 2D_ reçu en paramètre.
 
-La méthode `buildForms` est une **méthode de classe** qui prend en charge la construction d'un motif, composé **d'instances la classe** afin de produire un réultat avec une dose d'aléatoire. Par exemple, construction de plusieurs instances de la classe `Triangle` disposées aléatroirement. Cette méthode retourne un tableau d'instances de la classe.
+La méthode `buildForms` est une **méthode de classe** qui prend en charge la construction d'un motif, composé **d'instances la classe** afin de produire un réultat **avec une dose d'aléatoire**. Par exemple, construction de plusieurs instances de la classe `Triangle` disposées aléatroirement. 
+**Cette méthode retourne un tableau d'instances de la classe.**
 
 ### Attributs d'une forme (à renseigner lors d'une instanciation)
 
@@ -124,15 +201,32 @@ La méthode `buildForms` est une **méthode de classe** qui prend en charge la c
 - `ordreConstruction` : (entier) définit si l'objet sera dessiné avant ou après d'autres. (dans les derniers par défaut). Une valeur minimal marque l'objet comme devant être dessiné en premier (comme _Planete_ par exemple), un valeur _maximale_ provoquera l'affichage de l'objet dans les derniers.
 
 
-## Comment démarrer ?
+## IV/ Travaux pratiques
 
-1. Étudier le tutoriel https://developer.mozilla.org/fr/docs/Tutoriel_canvas/Utilisation_de_base - pour un internet ouvert - Fondation Mozilla open source (https://www.mozilla.org/fr/about/manifesto/)  
-2. Étudier le code des exemples dans `js/modules`. Pour les curieux, voir `index.html` et `main.js`.
-3. Concevoir, sur le papier, une idée de dessin originale (faire simple pour commencer, et avancer progressivement) - inspirez vous d'exemples glanés sur le net.
-4. Créer une nouvelle classe dans `modules` qui traduira votre idée originale en code 
-5. Ajouter cette classe à `modules/index.js` et ajouter un nouveau lien dans le dropdown `Composants` de `index.html` (voir ci-après)
-5. Mettre au point ... 
 
+3. Étudier le code des exemples dans `js/modules`. Pour les curieux, voir `index.html` et `main.js`.
+
+4. Ajouter un nouveau composant `Smiley`, en reprenant votre travail précédement réalisé. 
+
+## V/ Développez votre créativité
+
+Vous avez réalisé les étapes précédentes avec succès. 
+
+Vous savez maintenant comment ajouter un nouvelle forme dans l'application.
+
+Vous pouvez maintenant partir d'une page blanche (videz l'`index.js` du dossier `js/modules`, ou le mettre en comentaire `/* ... */`)
+
+### Votre mission (vous êtes livrés à vous-même)
+
+5. Concevoir, sur le papier, une idée de dessin originale (faire simple pour commencer, et avancer progressivement) - inspirez vous d'exemples glanés sur le net.
+6. Créer une nouvelle classe dans `modules` qui traduira votre idée originale en code 
+7. Ajouter cette classe à `modules/index.js` et ajouter un nouveau lien dans le dropdown `Composants` de `index.html` (voir ci-après)
+8. Mettre au point ...
+9. Créer de nouvelles formes pour enrichir votre paysage (pensez à l'aléatoire)
+
+
+<hr>
+ANNEXE
 <hr>
 
 ## Analyse du code existant
@@ -145,27 +239,34 @@ Un clic utilisateur sur un des items de cette liste provoquera un appel à la fo
 
 <hr>
 
-## ajouter/supprimer une nouvelle classe de forme
-<br>
+## ajouter une nouvelle classe de forme
 
-* Lors d'un ajout d'une nouvelle classe  (par exemple `MaNouvelleFome.js`), redéfinir les méthodes `static buildForms()` et ` draw(ctx)`. Prendre exemple sur `Immeuble`, `Triangle`, `Planete`. Ne pas oublier d'ajouter cette classe en **export** de `js/modues/index.js`.
+* Copier/coller une forme existante et donner un nom de classe et fichier parlants (le même), sans espace. 
 
+* Lors d'un ajout d'une nouvelle classe  (par exemple `MaNouvelleFome.js`), redéfinir les méthodes `static buildForms()` et ` draw(ctx)`. Prendre exemple sur `Immeuble`, `Triangle`, `Planete`. 
+*  Ajouter cette classe en **export** de `js/modues/index.js`. Exemple.
+
+```js
+export { MaNouvelleFome } from './MaNouvelleFome.js';
+export { Immeuble } from './Immeuble.js';
+export { Triangle } from './Triangle.js';
+export { Planete } from './Planete.js';
+export { AbstractForm } from './AbstractForm.js';
+```
 
 ATTENTION à bien respecter les conventions de nommage. 
 * Le nom des classes doit être de la forme `UpperCamelCase`
-* Le nom des méthodes doit être de la forme `LowerCamelCase`
+* Le nom des méthodes doit être de la forme `lowerCamelCase`
 * Une classe est définie dans un fichier de **même nom que le nom de la classe** (avec extension `.js`)
 
-<hr>
+## Activer le mode développeur de votre navigateur (F12) 
 
-### Accessible via un serveur HTTP
+**Consulter la console**
 
-Attention, l'application doit être placée derrière en serveur HTTP, et donc accessible à un utilisateur en réponse à une 
-requête `HTTP`, commençant par `http://` (et non en protocole `file://`)  
+ ![mode-F12](docs/f12.png)
 
-Sous VS, vous pouvez installer l'extension `Live Server`. Une fois installée, vous pouvez faire clic droit sur `index.html` pour lancer une instance d'un serveur HTTP, sur un port particulier, de votre machine locale. Ainsi votre application est-elle prête à être testée. 
+Corriger les erreurs (il y en aura très certainement)
 
-![exemple en version de base](docs/exemple-app-init.png)
 
 <hr>
 
@@ -185,6 +286,7 @@ Sous VS, vous pouvez installer l'extension `Live Server`. Une fois installée, v
 
 <hr>
 
+<!--
 ## Un historique en java (étudiant) 
 
 <br>
@@ -202,6 +304,7 @@ Une fois décompressé :
 `=> le code source : ./genPaysage/*`
 
 <hr>
+-->
 
 ## Ressources externes
 

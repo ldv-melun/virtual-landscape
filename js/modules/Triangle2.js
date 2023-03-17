@@ -3,7 +3,7 @@ import { AbstractForm } from './AbstractForm.js';
 /**
  * Déssine un triangle
  */
-export class Triangle extends AbstractForm {
+export class Triangle2 extends AbstractForm {
   // add default values to avoid errors on empty arguments
   constructor(
     x = 0,
@@ -67,12 +67,12 @@ export class Triangle extends AbstractForm {
    */
   static buildForms() {
     // create a new rectangle object using the Immeuble class
-    const myTriangle = new Triangle(250, 70, 100, 100, 'gold', '', 2, true)
+    const myTriangle = new Triangle2(250, 70, 100, 100, 'gold', '', 2, true)
     let max = ~~(Math.random() * 5) + 5 // max in [5..10]
     let forms = []
     for (let i = 0; i < max; i++) {
       forms.push(
-        new Triangle(
+        new Triangle2(
           ~~(Math.random() * 3 * myTriangle.x + 50),
           ~~(Math.random() * myTriangle.y),
           ~~(Math.random() * 3 * myTriangle.width + 10),
@@ -89,3 +89,4 @@ export class Triangle extends AbstractForm {
   }
 
 }
+

@@ -3,7 +3,7 @@ import {AbstractForm} from './AbstractForm.js';
 /**
  * Dessine un immeuble
  */
-class Immeuble extends AbstractForm {
+export class Immeuble extends AbstractForm {
 
   // you create new Rectangles by calling this as a function
   // these are the arguments you pass in
@@ -102,4 +102,3 @@ class Immeuble extends AbstractForm {
   }
 }
 
-export {Immeuble}

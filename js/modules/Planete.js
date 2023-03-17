@@ -3,7 +3,7 @@ import { AbstractForm } from './AbstractForm.js';
 /**
  * Dessine une sorte de planete...
  */
-class Planete extends AbstractForm {
+export class Planete extends AbstractForm {
   // add default values to avoid errors on empty arguments
   constructor(
     x = 0,
@@ -89,5 +89,3 @@ class Planete extends AbstractForm {
   }
 
 }
-
-export { Planete }
