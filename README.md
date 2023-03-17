@@ -4,18 +4,28 @@ Cette application génère, à chaque fois qu'elle est activée (ou rechargée),
 
 C'est un projet de développement logiciel à destinatation d'apprentis développeur.
 
-Objectifs  
+### Prérequis 
+
+* Connaissance de base de HTML / CSS (le JS peut être abordé ici pour la première fois)
+
+* Connaissance de base en programmation 
+
+* Connaissance de base en POO (_programmation orientée objet_)
+
+* git de base + IDE (visual studio code, intelliJ, ou autre)
+
+### Objectifs  
 
 * Apprendre à prendre en main un existant : petite application javascript (sans framework)
 * Apprendre à programmer en javascript dans une approche objet et événementielle
 * Aborder une nouvelle technolgie en mode autodidacte (utilisation de l'API 2D JS intégrée)
 * Développer sa créativité  
 
-Exemples de travaux étudiants :
+Exemples de travaux étudiants (copies écran) :
 
-<img src="https://raw.githubusercontent.com/ldv-melun/virtual-landscape/master/docs/exemple-1-2020.png" height="80">
-<img src="https://raw.githubusercontent.com/ldv-melun/virtual-landscape/master/docs/exemple-5-2020.png" height="80">
-<img src="https://raw.githubusercontent.com/ldv-melun/virtual-landscape/master/docs/exemple-6-2020.png" height="80">
+!<img src="https://raw.githubusercontent.com/ldv-melun/virtual-landscape/master/docs/exemple-1-2020.png" height="80">
+!<img src="https://raw.githubusercontent.com/ldv-melun/virtual-landscape/master/docs/exemple-5-2020.png" height="80">
+!<img src="https://raw.githubusercontent.com/ldv-melun/virtual-landscape/master/docs/exemple-6-2020.png" height="80">
 
 ## I/ Comprendre le canvas HTML
 
