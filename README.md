@@ -69,7 +69,7 @@ Le tutoriel vous donne le code de cette forme :
 
 <img src="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes/canvas_smiley.png">
 
-**2.1.** Voici le code de ce smiley, placé dans une fonction et appelé dans la fonction draw.
+Voici le code de ce smiley, placé dans une fonction et appelé dans la fonction draw.
 
 ```html
 <!DOCTYPE html>
@@ -122,7 +122,8 @@ function smiley(ctx, dx, dy) {
 </html>
 
 ```
- **Peindre les yeux en une couleur de votre choix**
+ 
+**2.1.** Votre premier travail consiste à **peindre les yeux de ce smiley en une couleur de votre choix**
 
 **2.2.** Concevoir **2 autres expressions type smileys de votre choix - avec des couleurs**, sur la base de celle donnée. (temps estimé 2h à 3h). Vous chercherez à conserver l'esthétique initiale (à garder le même thème sur l'ensemble de votre création) 
 
