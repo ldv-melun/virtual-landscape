@@ -69,7 +69,60 @@ Le tutoriel vous donne le code de cette forme :
 
 <img src="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes/canvas_smiley.png">
 
-**2.1.** Peindre les yeux en une couleur de votre choix
+**2.1.** Voici le code de ce smiley, placé dans une fonction et appelé dans la fonction draw.
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+
+<script type="application/javascript">
+function draw() {
+    const canvas = document.getElementById('canvas');
+    if (canvas.getContext) {
+        const ctx = canvas.getContext('2d');
+
+        // dessine 10 fois le smiley sur la "même ligne" (x croissant)
+        for( let i = 0; i < 10; i++) {
+           // smiley(ctx, i*100, 0)
+        }
+        
+        // appel la fonction (positionnement en y en 100)
+        smiley(ctx, 0, 100)
+
+        console.log('hauteur max ' + screen.height)
+        console.log('largeur max ' + screen.width)
+    }
+}
+
+function smiley(ctx, dx, dy) {
+    let ox = dx
+    let oy = dy
+
+    ctx.beginPath();
+    ctx.arc(ox + 50, oy + 50, 50, 0, Math.PI * 2, true);  // Cercle extérieur
+    ctx.moveTo(ox + 85, oy + 50);
+    ctx.arc(ox + 50, oy + 50, 35, 0, Math.PI, false);  // Bouche (sens horaire)
+    ctx.moveTo(ox + 40, oy + 40);
+    ctx.arc(ox + 35, oy + 40, 5, 0, Math.PI * 2, true);  // Oeil gauche
+    ctx.moveTo(ox + 70, oy + 40);
+    ctx.arc(ox + 65, oy + 40, 5, 0, Math.PI * 2, true);  // Oeil droite
+    ctx.stroke();
+}
+</script>
+
+</head>
+
+<body onload="draw();">
+<canvas id="canvas" width="1000" height="900"></canvas>
+</body>
+
+</html>
+
+```
+ **Peindre les yeux en une couleur de votre choix**
 
 **2.2.** Concevoir **2 autres expressions type smileys de votre choix - avec des couleurs**, sur la base de celle donnée. (temps estimé 2h à 3h). Vous chercherez à conserver l'esthétique initiale (à garder le même thème sur l'ensemble de votre création) 
 
