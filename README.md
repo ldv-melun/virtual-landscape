@@ -269,9 +269,9 @@ La méthode `buildForms` est une **méthode de classe** qui prend en charge la c
 ## IV/ Travaux pratiques
 
 
-3. Étudier le code des exemples dans `js/modules`. Pour les curieux, voir `index.html` et `main.js`.
+3. Modifier le composant `Smiley`, en reprenant votre travail précédement réalisé (activer la classe `Smiley` dans `modules/index.js`) 
 
-4. Ajouter un nouveau composant `Smiley`, en reprenant votre travail précédement réalisé. 
+4. Étudier le code des exemples dans `js/modules`. Pour les curieux, voir `index.html` et `main.js`.
 
 ## V/ Développez votre créativité
 
