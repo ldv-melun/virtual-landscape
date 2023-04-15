@@ -25,11 +25,27 @@ export class Smiley extends AbstractForm {
     let oy = (this.pesanteur) ? ctx.canvas.height - this.height : dy
         // si pesenteur pousse l'objet au bas de l'écran
 
+    ctx.save()
+
     // TODO prendre en compte this.fillColor et autres propriétés de l'objet (voir la classe de base)
     // prendre exemple sur Triangle.js
+    
+    // décommenter l'instruction ci-dessous pour pass en mode debogueur
+    //debugger
+    let r = Math.round(Math.random() * 255)
+    let g = Math.round(Math.random() * 255)
+    let b = Math.round(Math.random() * 255)
+
+    let rgb = `rgb(${r}, ${g}, ${b})`
+
+    // console.log(`Valeur rgb : ${rgb}`)
 
     ctx.beginPath();
     ctx.arc(ox + 50, oy + 50, 50, 0, Math.PI * 2, true);  // Cercle extérieur
+    ctx.fillStyle =  rgb // this.fillColor 
+    ctx.fill()
+
+    ctx.beginPath();
     ctx.moveTo(ox + 85, oy + 50);
     ctx.arc(ox + 50, oy + 50, 35, 0, Math.PI, false);  // Bouche (sens horaire)
     ctx.moveTo(ox + 40, oy + 40);
@@ -37,6 +53,11 @@ export class Smiley extends AbstractForm {
     ctx.moveTo(ox + 70, oy + 40);
     ctx.arc(ox + 65, oy + 40, 5, 0, Math.PI * 2, true);  // Oeil droite
     ctx.stroke();
+
+    // restores the styles from earlier
+    // preventing the colors used here
+    // from polluting other drawings
+    ctx.restore()
 }
 
   /**
@@ -44,13 +65,7 @@ export class Smiley extends AbstractForm {
    * @param ctx contexte 2D du canvas
    */
   draw(ctx) {
-    ctx.save()
     this.smiley(ctx, this.x, this.y)
-    
-    // restores the styles from earlier
-    // preventing the colors used here
-    // from polluting other drawings
-    ctx.restore()
   }
 
   /**

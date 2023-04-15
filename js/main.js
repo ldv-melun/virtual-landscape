@@ -30,7 +30,7 @@ function _drawForms(forms) {
   const ctx = c.getContext("2d");
 
   clearCanvas()
-  console.log("forms :" + JSON.stringify(forms))
+  // console.log("forms :" + JSON.stringify(forms))
 
   // draw all forms by looping over them
   forms.forEach(form => form.draw(ctx))

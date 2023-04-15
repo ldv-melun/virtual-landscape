@@ -63,13 +63,18 @@ Exemples de travaux étudiants (copies écran) :
 </body>
 </html>
 ```
-Aller ensuite sur la page suivante du tutoriel : https://developer.mozilla.org/fr/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes
+Aller ensuite sur la page suivante du tutoriel : https://developer.mozilla.org/fr/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes#d%C3%A9placement_du_stylo
 
 Le tutoriel vous donne le code de cette forme :
 
 <img src="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes/canvas_smiley.png">
 
-Voici le code de ce smiley, placé dans une fonction et appelé dans la fonction draw.
+Vous êtes invité à consulter le mode d'emploi de la fonction `arc` ici (en français) : 
+https://developer.mozilla.org/fr/docs/Web/API/CanvasRenderingContext2D/arc
+
+
+Voici le code de ce smiley, placé dans une fonction nommée `smiley` et appelé dans la fonction `draw`.
+
 
 ```html
 <!DOCTYPE html>
@@ -84,22 +89,19 @@ function draw() {
     if (canvas.getContext) {
         const ctx = canvas.getContext('2d');
 
-        // dessine 10 fois le smiley sur la "même ligne" (x croissant)
-        for( let i = 0; i < 10; i++) {
-           // smiley(ctx, i*100, 0)
-        }
-        
         // appel la fonction (positionnement en y en 100)
         smiley(ctx, 0, 100)
 
-        console.log('hauteur max ' + screen.height)
-        console.log('largeur max ' + screen.width)
+        console.log('hauteur max ' + window.innerWidth)
+        console.log('largeur max ' + window.innerWidth)
     }
 }
 
 function smiley(ctx, dx, dy) {
     let ox = dx
     let oy = dy
+   
+    ctx.save()
 
     ctx.beginPath();
     ctx.arc(ox + 50, oy + 50, 50, 0, Math.PI * 2, true);  // Cercle extérieur
@@ -110,13 +112,18 @@ function smiley(ctx, dx, dy) {
     ctx.moveTo(ox + 70, oy + 40);
     ctx.arc(ox + 65, oy + 40, 5, 0, Math.PI * 2, true);  // Oeil droite
     ctx.stroke();
+
+    // restores the styles from earlier
+    // preventing the colors used here
+    // from polluting other drawings
+    ctx.restore()
 }
 </script>
 
 </head>
 
 <body onload="draw();">
-<canvas id="canvas" width="1000" height="900"></canvas>
+   <canvas id="canvas" width="100%" height="100%"></canvas>
 </body>
 
 </html>
