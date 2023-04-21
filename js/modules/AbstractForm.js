@@ -1,10 +1,8 @@
 /**
  * Modèle de base pour des formes à venir (sous-classes)
  */
-class AbstractForm {
-  // you create new Rectangles by calling this as a function
-  // these are the arguments you pass in
-  // add default values to avoid errors on empty arguments
+export class AbstractForm {
+
   constructor(
     x = 0,
     y = 0,
@@ -60,35 +58,14 @@ class AbstractForm {
   }
 
   /**
-   * draw a rectangular form with ctx (must be override by subclasses)
+   * draw a form with ctx (must be override by subclasses)
+   * here, redefinition of y if pesanteur
    * @param ctx 2D from canvas
    */
   draw(ctx) {
-    ctx.save()
-    // set the styles for this shape
-    ctx.fillStyle = this.fillColor
-    ctx.lineWidth = this.strokeWidth
-
-    // create the *path*
-    ctx.beginPath()
-    ctx.strokeStyle = this.strokeColor
-
-    const MAX_HEAD = 0
-    let new_y = (this.pesanteur) ? ctx.canvas.height  - this.height - MAX_HEAD : this.y
-
-    ctx.rect(this.x, new_y, this.width, this.height)
-    // draw the path to screen
-    ctx.fill()
-    ctx.stroke()
-
-    // dessine un texte
-    ctx.fillStyle = 'black'
-    ctx.fillText(' Abstract Form', this.x + 10, new_y + 50);
-    ctx.fillText('pesanteur=' + this.pesanteur, this.x + 10, new_y + 80);
-    // restores the styles from earlier
-    // preventing the colors used here
-    // from polluting other drawings
-    ctx.restore()
+    if (this.pesanteur) {
+       this.y = ctx.canvas.height - this.height
+    }    
   }
 
   toString() {
@@ -101,11 +78,9 @@ class AbstractForm {
    *
    */
   static buildForms() {
-    const aForm1 = new AbstractForm(250, 70, 100, 100, 'gold', '', 2, true, 101)
-    const aForm2 = new AbstractForm(250, 70, 100, 100, 'gold', '', 2, false, 101)
-    return [aForm1, aForm2]
+    return []
   }
 
 }
 
-export {AbstractForm}
+

@@ -232,6 +232,9 @@ export class ????? extends AbstractForm {
    * @param ctx contexte 2D du canvas
    */
   draw (ctx) {
+    super.draw(ctx) 
+       // pour prise en compte de la pesanteur (redefinit y)
+
     ctx.save()
 
     // votre code ici
@@ -240,7 +243,7 @@ export class ????? extends AbstractForm {
   }
 
  /**
-   * get array of instances of this classe 
+   * get array of instances of this class
    * @return {[Object,...]}
    */
   static buildForms() {
@@ -275,7 +278,6 @@ La méthode `buildForms` est une **méthode de classe** qui prend en charge la c
 
 ## IV/ Travaux pratiques
 
-
 3. Modifier le composant `Smiley`, en reprenant votre travail précédement réalisé (activer la classe `Smiley` dans `modules/index.js`) 
 
 4. Étudier le code des exemples dans `js/modules`. Pour les curieux, voir `index.html` et `main.js`.
@@ -292,7 +294,7 @@ Vous pouvez maintenant partir d'une page blanche (videz l'`index.js` du dossier 
 
 5. Concevoir, sur le papier, une idée de dessin originale (faire simple pour commencer, et avancer progressivement) - inspirez vous d'exemples glanés sur le net.
 6. Créer une nouvelle classe dans `modules` qui traduira votre idée originale en code 
-7. Ajouter cette classe à `modules/index.js` et ajouter un nouveau lien dans le dropdown `Composants` de `index.html` (voir ci-après)
+7. Ajouter cette classe à `modules/index.js` (un nouveau lien sera alors automatiquement ajouté au menu `Composants` du dropdown)
 8. Mettre au point ...
 9. Créer de nouvelles formes pour enrichir votre paysage (pensez à l'aléatoire)
 
@@ -323,7 +325,7 @@ export { MaNouvelleFome } from './MaNouvelleFome.js';
 export { Immeuble } from './Immeuble.js';
 export { Triangle } from './Triangle.js';
 export { Planete } from './Planete.js';
-export { AbstractForm } from './AbstractForm.js';
+export { TextBox } from './TextBox.js';
 ```
 
 ATTENTION à bien respecter les conventions de nommage. 

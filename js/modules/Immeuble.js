@@ -27,6 +27,14 @@ export class Immeuble extends AbstractForm {
    * @param ctx contexte 2D du canvas
    */
   draw(ctx) {
+    const MAX_FENETRE_ETAGE = Math.floor(Math.random()*16) + 4
+    const MAX_ETAGE = Math.floor(Math.random()*8) + 4
+     // la hauteur de l'immeuble tient compte de l'arrondi du calcul de la hauteur d'un étage
+    this.height = Math.floor(this.height / MAX_ETAGE) * MAX_ETAGE
+
+    // redefinition de y si pesanteur
+    super.draw(ctx)
+
     // console.log(this.toString())
     // destructuring
     // const {
@@ -45,14 +53,8 @@ export class Immeuble extends AbstractForm {
     // create the *path*
     ctx.beginPath()
     ctx.strokeStyle = this.strokeColor
-
-    const MAX_FENETRE_ETAGE = Math.floor(Math.random()*16) + 4
-    const MAX_ETAGE = Math.floor(Math.random()*8) + 4
-
-    // la hauteur de l'immeuble tient compte de l'arrondi du calcul de la hauteur d'un étage
-    this.height = Math.floor(this.height / MAX_ETAGE) * MAX_ETAGE
-
-    let new_y = (this.pesanteur) ? ctx.canvas.height - this.height : this.y
+   
+    let new_y = this.y
     let wCase = Math.floor(this.width / MAX_FENETRE_ETAGE)
     let hCase = Math.floor(this.height / MAX_ETAGE)
 

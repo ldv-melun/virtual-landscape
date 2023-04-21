@@ -22,7 +22,7 @@ export class Smiley extends AbstractForm {
 
    smiley(ctx, dx, dy) {
     let ox = dx
-    let oy = (this.pesanteur) ? ctx.canvas.height - this.height : dy
+    let oy = dy
         // si pesenteur pousse l'objet au bas de l'écran
 
     ctx.save()
@@ -65,6 +65,7 @@ export class Smiley extends AbstractForm {
    * @param ctx contexte 2D du canvas
    */
   draw(ctx) {
+    super.draw(ctx)
     this.smiley(ctx, this.x, this.y)
   }
 

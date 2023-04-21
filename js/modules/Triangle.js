@@ -25,6 +25,7 @@ export class Triangle extends AbstractForm {
    * @param ctx contexte 2D du canvas
    */
   draw(ctx) {
+    super.draw(ctx)
     ctx.save()
 
     // set the styles for this shape
@@ -36,7 +37,7 @@ export class Triangle extends AbstractForm {
     ctx.strokeStyle = this.strokeColor
 
     // pousse l'objet au bas de l'écran
-    let new_y = (this.pesanteur) ? ctx.canvas.height - this.height : this.y
+    let new_y =  this.y
 
     // un peu d'ombre pour les triangles
     ctx.shadowOffsetX = 2;
