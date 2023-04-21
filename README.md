@@ -344,7 +344,9 @@ Corriger les erreurs (il y en aura très certainement)
 
 <hr>
 
-## Pour info, des exemples (étudiants 2020)
+## Pour info, des exemples (étudiant 2023 - Turgot- Paris)
+![etudiant-example](docs/maxime-turgot-virtual-landscape-2023.jpg)
+## Pour info, des exemples (étudiants 2020 - LDV Melun)
 
  ![etudiant-example](docs/exemple-1-2020.png)
 
