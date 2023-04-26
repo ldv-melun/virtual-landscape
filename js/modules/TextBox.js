@@ -45,7 +45,7 @@ export class TextBox extends AbstractForm {
 
     // dessine un texte
     ctx.fillStyle = 'black'
-    ctx.fillText(' Abstract Form', this.x + 10, new_y + 50);
+    ctx.fillText(' TextBox Form', this.x + 10, new_y + 50);
     ctx.fillText('pesanteur=' + this.pesanteur, this.x + 10, new_y + 80);
     // restores the styles from earlier
     // preventing the colors used here
