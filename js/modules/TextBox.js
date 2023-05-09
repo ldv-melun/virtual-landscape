@@ -55,10 +55,11 @@ export class TextBox extends AbstractForm {
 
   /**
    * get array of instances of this class (must be override by subclasses)
+   * @param ctx Canvas 2D context
    * @return {[Object,...]}
    *
    */
-  static buildForms() {
+  static buildForms(ctx) {
     const aForm1 = new TextBox(250, 70, 100, 100, 'gold', '', 2, true, 101)
     const aForm2 = new TextBox(250, 70, 100, 100, 'gold', '', 2, false, 101)
     return [aForm1, aForm2]

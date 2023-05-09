@@ -79,11 +79,12 @@ export class Planete extends AbstractForm {
 
   /**
    * get array of forms
+   * @param ctx Canvas 2D context
    * @return {[Planete...]}
    */
-  static buildForms() {
-    const cx = window.innerWidth / (~~(Math.random() * 4) + 2)
-    const w = window.innerWidth / (~~(Math.random() * 4) + 2)
+  static buildForms(ctx) {
+    const cx = ctx.canvas.height  / (~~(Math.random() * 4) + 2)
+    const w = ctx.canvas.width  / (~~(Math.random() * 3) + 1)
 
     const myPlanete = new Planete(cx, 10, w, w, 'gold', '', 1, false)
     const forms = [myPlanete]

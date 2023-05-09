@@ -66,21 +66,23 @@ export class Smiley extends AbstractForm {
    */
   draw(ctx) {
     super.draw(ctx)
-    this.smiley(ctx, this.x, this.y)
+    this.smiley(ctx, this.x, this.y) // width always = 50 :( -- TODO change this
   }
 
   /**
    * get array of forms
+   * @param ctx Canvas 2D context
    * @return {[Triangle,...]}
    */
-  static buildForms() {
-    // create a new rectangle object using the Immeuble class
+  static buildForms(ctx) {
+    const w = ctx.canvas.height/5
+    // console.log("w = " + w)
     let forms = []
     // ~~(Math.random() * 5) + 5 // max in [5..10]
-    forms.push(new Smiley(~~(Math.random() * 500) , ~~(Math.random() * 500) ,100,100,'blue','black', 1, true,50))
-    forms.push(new Smiley(~~(Math.random() * 500) ,~~(Math.random() * 700) ,100,100,'blue','black', 1, false,50))
+    forms.push(new Smiley(~~(Math.random() * 500) , ~~(Math.random() * 500),w, w,'blue','black', 1, true,50))
+    forms.push(new Smiley(~~(Math.random() * 500) ,~~(Math.random() * 700),w, w,'blue','black', 1, false,50))
 
-    console.log('nb de smileys : ' + forms.length)
+    // console.log('nb de smileys : ' + forms.length)
 
     // retourne un tableau d'objets de type Smiley
     return forms

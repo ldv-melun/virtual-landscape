@@ -74,10 +74,11 @@ export class AbstractForm {
 
   /**
    * get array of instances of this class (must be override by subclasses)
+   * @param ctx Canvas context 2D  
    * @return {[Object,...]}
    *
    */
-  static buildForms() {
+  static buildForms(ctx) {
     return []
   }
 

@@ -82,16 +82,17 @@ export class Immeuble extends AbstractForm {
 
   /**
    * get array of forms
+   * @param ctx Canvas 2D context
    * @return {[Immeuble,...]}
    */
-  static buildForms() {
+  static buildForms(ctx) {
     let widthCase = 100;
     let max = Math.floor(Math.random() * 5) + 3
     let forms = []
     for (let i = 0; i < max; i++) {
       forms.push(new Immeuble(
-        Math.floor(Math.random() * window.innerWidth),
-        Math.floor(Math.random() * 400) + 10,
+        Math.floor(Math.random() * ctx.canvas.width),
+        Math.floor(Math.random() * ctx.canvas.height/2) + 30,
         Math.floor(Math.random() * (widthCase) + 20),
         Math.floor(Math.random() * (widthCase * 2) + 30),
         (i % 2 === 0) ? 'gold' : 'gray',

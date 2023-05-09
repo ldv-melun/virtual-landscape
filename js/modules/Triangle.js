@@ -64,10 +64,11 @@ export class Triangle extends AbstractForm {
 
   /**
    * get array of forms
+   * @param ctx Canvas 2D context
    * @return {[Triangle,...]}
    */
-  static buildForms() {
-    // create a new rectangle object using the Immeuble class
+  static buildForms(ctx) {
+    // create a new object as prototype
     const myTriangle = new Triangle(250, 70, 100, 100, 'gold', '', 2, true)
     let max = ~~(Math.random() * 5) + 5 // max in [5..10]
     let forms = []

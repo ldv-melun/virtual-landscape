@@ -22,12 +22,13 @@ function clearCanvas() {
 
 /**
  * Dessine tous les objets dans le canvas
+ * @param ctx 2d context canvas
  * @param forms tableau d'objets de type AbstractForm
  * @private
  */
-function _drawForms(forms) {
-  const c = document.getElementById('sceneryCanvas')
-  const ctx = c.getContext("2d");
+function _drawForms(ctx, forms) {
+  // const c = document.getElementById('sceneryCanvas')
+  // const ctx = c.getContext("2d");
 
   clearCanvas()
   // console.log("forms :" + JSON.stringify(forms))
@@ -44,6 +45,8 @@ function _drawForms(forms) {
  * @return {Object[]}
  */
 function buildAllForms() {
+  const c = document.getElementById('sceneryCanvas')
+  const ctx = c.getContext("2d");
   const lesModules = lesModulesForms;
   const allForms = []
 
@@ -53,7 +56,7 @@ function buildAllForms() {
   // construit une liste (allForms) à partir d'un ensemble de listes (buildForms()) 
   let classNames = Object.keys(lesModules)
   for (let i = 0; i < classNames.length; i++)
-    allForms.push(...lesModules[classNames[i]].buildForms())
+    allForms.push(...lesModules[classNames[i]].buildForms(ctx))
 
   // les formes sont triées selon leur ordre de construction (priorité aux plus petits)  
   return allForms.sort((a, b) => a.ordreConstruction - b.ordreConstruction)
@@ -65,9 +68,12 @@ function buildAllForms() {
  * @param formClassName le nom d'une classe héritant d'AbstractForm dans modules
  */
 function drawThisForm(formClassName) {
+  const c = document.getElementById('sceneryCanvas')
+  const ctx = c.getContext("2d");
   const lesModules = lesModulesForms;
+
   if (typeof lesModules[formClassName] !== undefined) {
-    _drawForms(lesModules[formClassName].buildForms())
+    _drawForms(ctx, lesModules[formClassName].buildForms(ctx))
   }
 }
 
@@ -75,7 +81,9 @@ function drawThisForm(formClassName) {
  * Dessine toutes les formes
  */
 function drawAllForms() {
-  _drawForms(buildAllForms())
+  const c = document.getElementById('sceneryCanvas')
+  const ctx = c.getContext("2d");
+  _drawForms(ctx, buildAllForms(ctx))
 }
 
 /**
