@@ -346,6 +346,23 @@ Corriger les erreurs (il y en aura très certainement)
 
 ## Pour info, des exemples (étudiant 2023 - Turgot- Paris)
 ![etudiant-example](docs/maxime-turgot-virtual-landscape-2023.jpg)
+<hr>
+## Pour info, des exemples (étudiants 2023 - LDV Melun)
+
+ ![etudiant-example](docs/exemple-7-2023.png)
+
+ ![etudiant-example](docs/exemple-8-2023.png)
+
+ ![etudiant-example](docs/exemple-9-2023.png)
+ 
+ ![etudian-example](docs/exemple-10-2023.png)
+
+ ![etudian-example](docs/exemple-11-2023.png)
+
+ ![etudian-example](docs/exemple-12-2023.png)
+
+<hr>
+
 ## Pour info, des exemples (étudiants 2020 - LDV Melun)
 
  ![etudiant-example](docs/exemple-1-2020.png)
@@ -360,7 +377,6 @@ Corriger les erreurs (il y en aura très certainement)
  
  ![etudiant-example](docs/exemple-4-2020.png)
 
-<hr>
 
 <!--
 ## Un historique en java (étudiant) 
